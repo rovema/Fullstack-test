@@ -7,7 +7,7 @@ Para executar o desafio de **Full Stack Developer**, você **poderá utilizar qu
 ## Desafio
 Você é o responsável por construir uma **Estante de livros**, com os seguintes requisitos:
 
-- Como leitor, desejo cadastrar um livro, contendo **título**, **descrição**, **foto** e **status** de **Lido** e **Não Lido**.
+- Como leitor, desejo cadastrar um livro, contendo **título**, **descrição**, **foto** e **status** de **Lido** ou **Não Lido**.
 - Como leitor, desejo cadastrar livros com o status de **Não Lido** por padrão.
 - Como leitor, desejo editar um livro cadastrado.
 - Como leitor, desejo remover um livro da minha estante.
