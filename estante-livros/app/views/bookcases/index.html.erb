@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Bookcases</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bookcases.each do |bookcase| %>
+      <tr class="container">
+        <td><%= bookcase.name %></td>
+        <td><%= bookcase.description %></td>
+        <td><%= bookcase.user.email %></td>
+        <td><%= link_to 'Show', bookcase %></td>
+        <td><%= link_to 'Edit', edit_bookcase_path(bookcase) %></td>
+        <td><%= link_to 'Destroy', bookcase, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Bookcase', new_bookcase_path %>
