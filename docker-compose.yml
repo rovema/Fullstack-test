@@ -42,7 +42,7 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
     environment:
-      POSTGRES_DB: postgres
+      POSTGRES_DB: fullstack
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: test#.db
     networks:
