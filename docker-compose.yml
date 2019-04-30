@@ -1,0 +1,70 @@
+version: '3'
+services:
+  app:
+    build: .
+    container_name: test_app_1
+    image: app_image
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - ./:/var/www
+      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+      - ./storage/logs:/var/log/test
+    networks:
+      - app_network
+    depends_on:
+      - nginx
+      - postgres
+      - redis
+
+  nginx:
+    image: nginx:alpine
+    container_name: test_web_1
+    restart: always
+    tty: true
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./:/var/www
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - app_network
+
+  postgres:
+    image: postgres
+    container_name: test_db_1
+    restart: always
+    tty: true
+    ports:
+      - 5432:5432
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: test#.db
+    networks:
+      - app_network
+
+  redis:
+    image: redis
+    container_name: test_cache_1
+    command: redis-server --requirepass test#.cache
+    restart: always
+    volumes:
+      - redis_data:/bitnami/redis/data
+    networks:
+      - app_network
+
+volumes:
+  db_data:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  app_network:
+    driver: bridge
+
