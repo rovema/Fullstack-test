@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
   <title>Livros & Cia</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -8,7 +8,6 @@
   <%= stylesheet_link_tag "//stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css", media: "all", "data-turbolinks-track": "reload" %>
   <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap-grid.min.css', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= stylesheet_link_tag "//use.fontawesome.com/releases/v5.6.3/css/all.css", media: "all", "data-turbolinks-track": "reload" %>
-  <%= stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css", media: "all", "data-turbolinks-track": "reload" %>
   <%= stylesheet_link_tag 'application', 'data-turbolinks-track': 'reload' %>
 
   <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js', 'data-turbolinks-track': 'reload' %>
@@ -19,13 +18,15 @@
   <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-treeview/1.2.0/bootstrap-treeview.min.js', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'https://unpkg.com/sweetalert/dist/sweetalert.min.js', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
   <%= yield :javascript %>
 </head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body>
+</nav>
+<%= flash_message %>
+<%= yield %>
+</body>
 </html>

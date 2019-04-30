@@ -1,6 +1,9 @@
-<h1>Editing Bookcase</h1>
+<div class="container">
+    
+    <h1>Editing Bookcase</h1>
 
-<%= render 'form', bookcase: @bookcase %>
+    <%= render 'form', bookcase: @bookcase %>
 
-<%= link_to 'Show', @bookcase %> |
-<%= link_to 'Back', bookcases_path %>
+    <%= link_to 'Show', @bookcase, class:"btn btn-link" %> |
+    <%= link_to 'Back', bookcases_path, class:"btn btn-link" %>
+</div>

@@ -1,19 +1,21 @@
-<p id="notice"><%= notice %></p>
+<p id="notice" classe="class:"alert alert-success","><%= notice %></p>
+<div class="container">
+  
+  <p>
+    <strong>Name:</strong>
+    <%= @bookcase.name %>
+  </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @bookcase.name %>
-</p>
+  <p>
+    <strong>Description:</strong>
+    <%= @bookcase.description %>
+  </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @bookcase.description %>
-</p>
+  <p>
+    <strong>User:</strong>
+    <%= @bookcase.user.name %>
+  </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @bookcase.user.name %>
-</p>
-
-<%= link_to 'Edit', edit_bookcase_path(@bookcase) %> |
-<%= link_to 'Back', bookcases_path %>
+  <%= link_to 'Edit', edit_bookcase_path(@bookcase),class:"btn btn-link" %> |
+  <%= link_to 'Back', bookcases_path, class:"btn btn-link" %>
+</div>
