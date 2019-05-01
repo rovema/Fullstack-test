@@ -1,80 +1,53 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layout.master')
 
-    <title>Laravel</title>
+@section('breadcrumb')
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ route('home') }}">Livros</a>
+        </li>
+        /
+        <li class="breadcrumb-item active">Novo livro</li>
+    </ol>
+@endsection
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
-    <!-- Styles -->
-    <style>
-        html, body {
-            background-color: #fff;
-            color: #636b6f;
-            font-family: 'Nunito', sans-serif;
-            font-weight: 200;
-            height: 100vh;
-            margin: 0;
-        }
+@section('content')
+    <div class="widget">
+        <div class="widget-header">
+            <h3>Novo Livro</h3>
+        </div>
+        <div class="widget-content">
+            <form action="{{ route('books.store') }}" method="POST" class="form-horizontal">
+                {{ csrf_field() }}
+                <fieldset>
+                    <div class="control-group">
+                        <label class="control-label" for="title">Título</label>
+                        <div class="controls">
+                            <input class="span9" type="text" id="title" name="title">
+                        </div>
+                    </div>
 
-        .full-height {
-            height: 100vh;
-        }
+                    <div class="control-group">
+                        <label class="control-label" for="description">Descrição</label>
+                        <div class="controls">
+                            <textarea class="span9" name="description" id="description" cols="30" rows="10"></textarea>
+                        </div>
+                    </div>
 
-        .flex-center {
-            align-items: center;
-            display: flex;
-            justify-content: center;
-        }
+                    <div class="control-group">
+                        <label class="control-label" for="photo">Foto</label>
+                        <div class="controls">
+                            <a class="btn" href="#">escolher arquivo</a>
+                            <p class="help-block">Tipos aceitos, tamanho maximo do arquivo.</p>
+                        </div>
+                    </div>
 
-        .position-ref {
-            position: relative;
-        }
-
-        .top-right {
-            position: absolute;
-            right: 10px;
-            top: 18px;
-        }
-
-        .content {
-            text-align: center;
-        }
-
-        .title {
-            font-size: 84px;
-        }
-
-        .links > a {
-            color: #636b6f;
-            padding: 0 25px;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: .1rem;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-
-        .m-b-md {
-            margin-bottom: 30px;
-        }
-    </style>
-</head>
-<body>
-    <div class="flex-center position-ref full-height">
-        <form action="{{ route('books.store') }}" method="POST">
-            <label for="title">Titulo</label>
-            <input type="text" id="title" name="title">
-            <label for="description">Descricao</label>
-            <textarea name="description" id="description" cols="30" rows="10"></textarea>
-            <label for="photo">Foto</label>
-            <input type="text" id="photo" name="photo">
-            <button type="submit">SUBMIT</button>
-            {{ csrf_field() }}
-        </form>
+                    <div class="form-actions">
+                        <button class="btn btn-primary" type="submit">Salvar</button>
+                        <a class="btn pull-right" href="{{ route('home') }}">Cancel</a>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
     </div>
-</body>
-</html>
+@endsection
