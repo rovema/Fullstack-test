@@ -1,0 +1,29 @@
+<%= form_for(bookcase) do |f| %>
+  <% if bookcase.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(bookcase.errors.count, "error") %> prohibited this bookcase from being saved:</h2>
+
+      <ul>
+      <% bookcase.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-row container">
+    <div class="form-group col-md-12">
+      <%= f.label :name %>
+      <%= f.text_field :name, class:"form-control" %>
+    </div>
+
+    <div class="form-group col-md-12">
+      <%= f.label :description %>
+      <%= f.text_field :description, class:"form-control" %>
+    </div>
+  
+    <div class="form-group col-md-6"> 
+      <%= f.submit 'Create Bookcase', class:"btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
