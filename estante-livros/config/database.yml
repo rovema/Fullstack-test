@@ -2,10 +2,8 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: 127.0.0.1
-  port: 5432
-  username: root
-  password: root
+  host: postgres
+  user: postgres
 
 development:
   <<: *default
@@ -13,10 +11,8 @@ development:
 
 test:
   <<: *default
-  database: estante-livros_test
+  database: estante-livros_exchance_test
 
 production:
   <<: *default
-  database: estante-livros_production
-  username: estante-livros
-  password: <%= ENV['ESTANTE-LIVROS_DATABASE_PASSWORD'] %>
+  database: estante-livros_exchance_production

@@ -17,8 +17,14 @@ Tecnologias:
 	gem 'devise' para autenticação dos usuários;
 	Bootstrap version: 4.3.1
 	gem 'carrierwave' e 'mini-magick' para manipulação de arquivos e imagens;
+	https://onebitcode.com/fazendo-upload-de-imagem-e-multiplos-anexos-usando-carrierwave/
 	Docker version: 18.09
+	https://rubygems.org/
+	https://guides.rubyonrails.org/
+	http://guides.railsgirls.com/guides-ptbr/devise
 	
 Como rodar:
 	Docker build 
 	Docker ps 
+
+
