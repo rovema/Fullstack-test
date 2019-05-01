@@ -11,22 +11,25 @@ class BooksController < ApplicationController
   # GET /books/1.json
   def show; end
 
-
   def consult_book
     @book = Book.where(bookcase_id: params[:id]).all
     if @book.present?
-      render json: {books: @book}
+      render json: { books: @book }
     else
-      render json: {books: false}
+      render json: { books: false }
     end
   end
+
   # GET /books/new
   def new
     @book = Book.new
+    options_for_select
   end
 
   # GET /books/1/edit
-  def edit; end
+  def edit
+    options_for_select
+  end
 
   # POST /books
   # POST /books.json
@@ -57,6 +60,9 @@ class BooksController < ApplicationController
       end
     end
   end
+  def options_for_select
+    @status_options_for_select = Status.all
+  end
 
   # DELETE /books/1
   # DELETE /books/1.json
@@ -77,6 +83,6 @@ class BooksController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def book_params
-    params.require(:book).permit(:title, :description, :photo, :status, :bookcase_id, :user_id)
+    params.require(:book).permit(:title, :description, :status, :avatar, :bookcase_id, :user_id)
   end
 end

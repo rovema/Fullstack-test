@@ -12,12 +12,12 @@
 
 <p>
   <strong>Photo:</strong>
-  <%= @book.photo %>
+  <%= image_tag(@book.avatar.thumb.url) if @book.avatar %>
 </p>
 
 <p>
   <strong>Status:</strong>
-  <%= @book.status %>
+  <%= status(@book) %>
 </p>
 
 <p>

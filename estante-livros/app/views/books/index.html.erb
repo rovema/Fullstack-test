@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
 <div class="container">
   <h1>Books</h1>
-
   <table class="table">
     <thead>
       <tr>
@@ -19,8 +18,8 @@
         <tr>
           <td><%= book.title %></td>
           <td><%= book.description %></td>
-          <td><%= book.photo %></td>
-          <td><%= book.status %></td>
+          <td><img src="<%= book.avatar.thumb.url%>" alt="Smiley face" height="42" width="42"></td>
+          <td><%= status(book) %></td>
           <td><%= book.bookcase.name %></td>
           <td><%= link_to 'Show', book %></td>
           <td><%= link_to 'Edit', edit_book_path(book) %></td>
@@ -34,4 +33,3 @@
 
   <%= link_to 'New Book', new_book_path, class:"btn btn-link"%>
   <%=  link_to  "New Bookcase", new_bookcase_path, class:"btn btn-link" %>
-</div>
