@@ -39,10 +39,21 @@ class BookController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'required|unique:books|max:255',
-            'description' => 'required'
+            'description' => 'required',
+            'photo' => 'required|image'
         ]);
 
-        Book::create($validatedData);
+        $fileName = "{$validatedData['title']}.{$request->photo->extension()}";
+        $validatedData['photo'] = $fileName;
+
+        try {
+            \DB::transaction(function() use ($validatedData, $fileName, $request){
+                Book::create($validatedData);
+                $request->photo->storeAs('books', $fileName);
+            });
+        } catch (\Exception $err) {
+            return redirect()->route('books.index')->withErrors(['error' => $err->getMessage()]);
+        }
 
         return redirect()->route('books.index');
     }
@@ -70,7 +81,7 @@ class BookController extends Controller
     {
         $book = Book::FindOrFail($id);
 
-        return view('book.create', compact('book'));
+        return view('book.edit', compact('book'));
     }
 
     /**
@@ -86,13 +97,22 @@ class BookController extends Controller
 
         $validatedData = $request->validate([
             'title' => 'required|unique:books|max:255',
-            'description' => 'required'
+            'description' => 'required',
+            'photo' => 'required|image'
         ]);
+
+        $fileName = "{$validatedData['title']}.{$request->photo->extension()}";
+        $validatedData['photo'] = $fileName;
 
         $book->fill($validatedData);
 
-        if ($book->save()) {
-            return redirect()->route('books.index');
+        try {
+            \DB::transaction(function() use ($book, $fileName, $request){
+                $book->save();
+                $request->photo->storeAs('books', $fileName);
+            });
+        } catch (\Exception $err) {
+            return redirect()->route('books.index')->withErrors(['error' => $err->getMessage()]);
         }
 
         return redirect()->route('books.index');
@@ -106,11 +126,7 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        $book = Book::FindOrFail($id);
-
-        if ($book->destroy()) {
-            return redirect()->route('books.index');
-        }
+        Book::destroy($id);
 
         return redirect()->route('books.index');
     }
