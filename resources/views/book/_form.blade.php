@@ -31,6 +31,6 @@
         <button class="btn btn-primary" type="submit">
             {{ \Route::current()->getName() == 'books.edit' ? 'Atualizar' : 'Salvar' }}
         </button>
-        <a class="btn pull-right" href="{{ route('home') }}">Cancel</a>
+        <a class="btn pull-right" href="{{ route('home') }}">Cancelar</a>
     </div>
 </fieldset>
