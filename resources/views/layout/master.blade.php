@@ -13,13 +13,18 @@
     <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap-responsive.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/base.css') }}" rel="stylesheet">
+    @yield('styles')
 
     {{-- Scripts --}}
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 <body>
-    @include('layout.navbar')
-    @include('layout.subnavbar')
+    @if(isset($login))
+        @include('layout.navbar')
+    @else
+        @include('layout.navbar')
+        @include('layout.subnavbar')
+    @endif
 
     @yield('breadcrumb')
 
@@ -29,6 +34,7 @@
                 <div class="row">
                     <div class="span12">
                         @yield('content')
+                        @include('layout.errors')
                     </div>
                 </div>
             </div>

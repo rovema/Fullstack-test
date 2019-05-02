@@ -13,3 +13,6 @@
 
 Route::get('/', 'BookController@index')->name('home');
 Route::resource('books', 'BookController');
+
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+Auth::routes();

@@ -21,6 +21,5 @@
                 @include('book._form')
             </form>
         </div>
-        @include('layout.errors')
     </div>
 @endsection
