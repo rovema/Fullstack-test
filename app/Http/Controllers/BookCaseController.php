@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\BookCase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\BookCaseExport;
 
 class BookCaseController extends Controller
 {
@@ -73,5 +75,13 @@ class BookCaseController extends Controller
         BookCase::destroy($id);
 
         return redirect()->route('bookcase.index');
+    }
+
+    /**
+     * Export to csv
+     */
+    public function export()
+    {
+        return Excel::download(new BookCaseExport, 'estante.csv');
     }
 }

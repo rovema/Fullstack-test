@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Book;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\BookExport;
 
 class BookController extends Controller
 {
@@ -163,5 +165,13 @@ class BookController extends Controller
         Book::destroy($id);
 
         return redirect()->route('books.index');
+    }
+
+    /**
+     * Export to csv
+     */
+    public function export()
+    {
+        return Excel::download(new BookExport, 'livros.csv');
     }
 }

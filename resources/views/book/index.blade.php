@@ -21,6 +21,7 @@
     <div class="widget widget-table action-table">
         <div class="widget-header"> <i class="icon-th-list"></i>
             <h3>Livros Cadastrados</h3>
+            <a  class="pull-right" href="{{ route('books.export') }}" style="margin-right: 42px;">Exportar</a>
             <a  class="pull-right" href="{{ route('books.create') }}" style="margin-right: 42px;">Novo Livro</a>
         </div>
         @if($books->isNotEmpty())

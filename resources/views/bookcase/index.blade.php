@@ -25,6 +25,7 @@
     <div class="widget widget-table action-table">
         <div class="widget-header"> <i class="icon-th-list"></i>
             <h3>Meus Livros</h3>
+            <a  class="pull-right" href="{{ route('bookcase.export') }}" style="margin-right: 42px;">Exportar</a>
         </div>
         @if($bookcase->isNotEmpty())
             <div class="widget-content">
