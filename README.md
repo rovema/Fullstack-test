@@ -6,10 +6,10 @@ Sistema web que possibilita fazer o cadastro de livros (criar, visualizar, edita
 
 ----
 ## TECNOLOGIAS
-* [PHP](https://www.php.net/)
-* [Laravel](https://laravel.com/)
-* [Laravel-excel](https://docs.laravel-excel.com/3.1/getting-started/)
-* [Postgres](https://www.postgresql.org/)
+* Linguagem: [PHP](https://www.php.net/)
+* Framework: [Laravel](https://laravel.com/)
+* Banco: [Postgres](https://www.postgresql.org/)
+* Guia de estilo de código: [PSR2](https://www.php-fig.org/psr/psr-2/)
 
 
 ----
@@ -42,3 +42,7 @@ docker exec -it test_app_1 php artisan key:generate
 docker exec -it test_app_1 php artisan migrate
 ```
 9. Acesse o aplicativo: [localhost](http://127.0.0.1)
+10. Rodando os testes.
+```
+docker exec -it test_app_1 vendor/bin/phpunit
+```
