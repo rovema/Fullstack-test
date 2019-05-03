@@ -1,11 +1,11 @@
 # Rovema/Fullstack-test - Rafael Brasil
 
 ----
-##PROJETO
+## PROJETO
 Sistema web que possibilita fazer o cadastro de livros (criar, visualizar, editar, apagar) e por meio de autenticação acessar estante de livros.
 
 ----
-##TECNOLIGIAS
+## TECNOLIGIAS
 * [PHP](https://www.php.net/)
 * [Laravel](https://laravel.com/)
 * [Laravel-excel](https://docs.laravel-excel.com/3.1/getting-started/)
@@ -13,7 +13,7 @@ Sistema web que possibilita fazer o cadastro de livros (criar, visualizar, edita
 
 
 ----
-##COMO RODAR
+## COMO RODAR
 1. Clone ou baixe o repositorio.
 2. Entre na pasta do projeto.
 3. Adicione o arquivo env.
