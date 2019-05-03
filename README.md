@@ -41,8 +41,13 @@ docker exec -it test_app_1 php artisan key:generate
 ```
 docker exec -it test_app_1 php artisan migrate
 ```
-9. Acesse o aplicativo: [localhost](http://127.0.0.1)
-10. Rodando os testes.
+9. reinicie o container
+```
+docker-compose down
+docker-compose up -d
+```
+10. Acesse o aplicativo: [localhost](http://127.0.0.1)
+11. Rodando os testes.
 ```
 docker exec -it test_app_1 vendor/bin/phpunit
 ```
