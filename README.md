@@ -2,7 +2,7 @@
 
 ----
 ## PROJETO
-Sistema web que possibilita fazer o cadastro de livros (criar, visualizar, editar, apagar) e por meio de autenticação acessar estante de livros.
+Sistema web que possibilita fazer o cadastro de livros (criar, visualizar, editar, apagar) e por meio de autenticação acessar estante de livros e exportar esses livros no formato csv.
 
 ----
 ## TECNOLIGIAS
