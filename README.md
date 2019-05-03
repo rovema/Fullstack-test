@@ -16,13 +16,29 @@ Sistema web que possibilita fazer o cadastro de livros (criar, visualizar, edita
 ##COMO RODAR
 1. Clone ou baixe o repositorio.
 2. Entre na pasta do projeto.
-3. Execute o comando para buildar a imagem e iniciar o container.
-`docker-compose up --build -d`
-4. Execute os comando para instalar dependencias necessarias.
-`docker exec -it test_app_1 composer install`
-5. Execute os comandos para garantir permissão necessaria para acessar o aplicativo.
-`docker exec -it test_app_1 chmod 0777 -R bootstrap/cache`
-`docker exec -it test_app_1 chmod 0777 -R storage`
-6. Rode a migration.
-`docker exec -it test_app_1 php artisan migrate`
-7. Acesse o aplicativo: [localhost](http://127.0.0.1)
+3. Adicione o arquivo env.
+```
+cp .env.example .env
+```
+4. Execute o comando para buildar a imagem e iniciar o container.
+```
+docker-compose up --build -d
+```
+5. Execute os comando para instalar dependencias necessarias.
+```
+docker exec -it test_app_1 composer install
+```
+6. Execute os comandos para garantir permissão necessaria para acessar o aplicativo.
+```
+docker exec -it test_app_1 chmod 0777 -R bootstrap/cache
+docker exec -it test_app_1 chmod 0777 -R storage
+```
+7. Gere a chave da aplicação.
+```
+docker exec -it test_app_1 php artisan key:generate
+```
+7. Rode as migration.
+```
+docker exec -it test_app_1 php artisan migrate
+```
+8. Acesse o aplicativo: [localhost](http://127.0.0.1)
