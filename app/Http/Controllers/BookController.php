@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Book;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
@@ -30,6 +31,15 @@ class BookController extends Controller
     public function index()
     {
         $books = Book::all();
+
+        if(Request()->filled('q')){
+            $searchTitle = mb_strtolower(Request('q'));
+            $books = DB::table('books')->whereRaw("LOWER(title) like '%$searchTitle%'")->get();
+        }
+
+        if(Request()->filled('clear')) {
+            $books = Book::all();
+        }
 
         return view('book.index', compact('books'));
     }

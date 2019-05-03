@@ -17,6 +17,15 @@ class BookCaseController extends Controller
     {
         $bookcase = BookCase::all()->where('id_user', Auth::user()->id);
 
+        if(Request()->filled('q')){
+            $status = Request('q') == 1 ? true : false;
+            $bookcase = $bookcase->where('status', $status);
+        }
+
+        if(Request()->filled('clear')) {
+            $bookcase = BookCase::all()->where('id_user', Auth::user()->id);
+        }
+
         return view('bookcase.index', compact('bookcase'));
     }
 
