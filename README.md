@@ -5,7 +5,7 @@
 Sistema web que possibilita fazer o cadastro de livros (criar, visualizar, editar, apagar) e por meio de autenticação acessar estante de livros e exportar esses livros no formato csv.
 
 ----
-## TECNOLIGIAS
+## TECNOLOGIAS
 * [PHP](https://www.php.net/)
 * [Laravel](https://laravel.com/)
 * [Laravel-excel](https://docs.laravel-excel.com/3.1/getting-started/)
