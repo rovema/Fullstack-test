@@ -37,8 +37,8 @@ docker exec -it test_app_1 chmod 0777 -R storage
 ```
 docker exec -it test_app_1 php artisan key:generate
 ```
-7. Rode as migration.
+8. Rode as migration.
 ```
 docker exec -it test_app_1 php artisan migrate
 ```
-8. Acesse o aplicativo: [localhost](http://127.0.0.1)
+9. Acesse o aplicativo: [localhost](http://127.0.0.1)
