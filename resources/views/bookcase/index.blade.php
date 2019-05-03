@@ -25,7 +25,9 @@
     <div class="widget widget-table action-table">
         <div class="widget-header"> <i class="icon-th-list"></i>
             <h3>Meus Livros</h3>
-            <a  class="pull-right" href="{{ route('bookcase.export') }}" style="margin-right: 42px;">Exportar</a>
+            @if($bookcase->isNotEmpty())
+                <a  class="pull-right" href="{{ route('bookcase.export') }}" style="margin-right: 42px;">Exportar</a>
+            @endif
         </div>
         @if($bookcase->isNotEmpty())
             <div class="widget-content">
@@ -50,16 +52,16 @@
                             <td>{{ $case->status == false ? 'Não' : 'Sim' }}</td>
                             <td>
                                 <div class="btn-group" style="margin-top: 10px;">
-                                    <button type="submit" class="btn" form="update">Visualizar</button>
-                                    <button type="submit" class="btn btn-danger" form="destroy">Remover</button>
+                                    <button type="submit" class="btn" form="update_{{ $case->id }}">Visualizar</button>
+                                    <button type="submit" class="btn btn-danger" form="destroy_{{ $case->id }}">Remover</button>
                                 </div>
 
-                                <form action="{{ route('bookcase.update', $case->id) }}" method="POST" id="update">
+                                <form action="{{ route('bookcase.update', $case->id) }}" method="POST" id="update_{{ $case->id }}">
                                     @method('PATCH')
                                     @csrf
                                     <input type="hidden" name="idBook" value="{{ $case->book->id }}">
                                 </form>
-                                <form action="{{ route('bookcase.destroy', $case->id) }}" method="POST" id="destroy">
+                                <form action="{{ route('bookcase.destroy', $case->id) }}" method="POST" id="destroy_{{ $case->id }}">
                                     @method('DELETE')
                                     @csrf
                                     <input type="hidden" name="idBook" value="{{ $case->book->id }}">
