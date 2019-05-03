@@ -37,7 +37,7 @@ docker exec -it test_app_1 chmod 0777 -R storage
 ```
 docker exec -it test_app_1 php artisan key:generate
 ```
-8. Rode as migration.
+8. Rode as migrations.
 ```
 docker exec -it test_app_1 php artisan migrate
 ```
