@@ -34,7 +34,4 @@
             </form>
         </div>
     </div>
-    <div class="login-extra">
-        Já tem uma conta? <a href="login.html">Faça o login</a>
-    </div>
 @endsection
