@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3582d01afba1581a5449eae6210b2887",
+    "content-hash": "4ccad5b0d4b7f2f387a199dfa76aa6fb",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -752,6 +752,46 @@
                 "storage"
             ],
             "time": "2019-03-30T13:22:34+00:00"
+        },
+        {
+            "name": "lucascudo/laravel-pt-br-localization",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lucascudo/laravel-pt-BR-localization.git",
+                "reference": "37aafc3f4f54a61bd479cfac46d6a6b65d8fdc49"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lucascudo/laravel-pt-BR-localization/zipball/37aafc3f4f54a61bd479cfac46d6a6b65d8fdc49",
+                "reference": "37aafc3f4f54a61bd479cfac46d6a6b65d8fdc49",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Lucascudo\\LaravelPtBRLocalization\\LaravelPtBRLocalizationServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Lucascudo\\LaravelPtBRLocalization\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Cascudo",
+                    "email": "lucas.sisau@gmail.com"
+                }
+            ],
+            "description": "Arquivos de linguagem em Português do Brasil (pt-BR) para Laravel >= 5.6",
+            "time": "2019-05-03T17:29:34+00:00"
         },
         {
             "name": "maatwebsite/excel",
@@ -4778,7 +4818,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "lucascudo/laravel-pt-br-localization": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

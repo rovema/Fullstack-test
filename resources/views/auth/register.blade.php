@@ -12,7 +12,7 @@
                 <h1>Crie sua conta</h1>
                 <div class="login-fields">
                     <div class="field">
-                        <label for="firstname">Nome</label>
+                        <label for="nome">Nome</label>
                         <input type="text" id="name" name="name" value="" placeholder="Nome" class="login" />
                     </div>
                     <div class="field">

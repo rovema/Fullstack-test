@@ -17,7 +17,7 @@
     <div class="control-group">
         <label class="control-label" for="photo">Foto</label>
         <div class="controls">
-            <input name="photo" type="file">
+            <input name="photo" type="file" accept="image/*">
             @if(isset($book) && $book->photo != null)
                 <hr>
                 <p class="help-block">Imagem atual.</p>
