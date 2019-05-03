@@ -29,9 +29,6 @@ class BookCaseController extends Controller
     {
         $bookcase = BookCase::findOrFail($id);
 
-        dump($id);
-        dd($request->idBook);
-
         if ($bookcase->status == false) {
             $bookcase->status = true;
             $bookcase->save();
