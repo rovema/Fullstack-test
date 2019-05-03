@@ -4,9 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Book;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
+    /*
+     * Book
+     */
+    protected $book;
+
+    /**
+     * BookController constructor.
+     * @param Book $book
+     */
+    public function __construct(Book $book)
+    {
+        $this->book = $book;
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -68,7 +83,16 @@ class BookController extends Controller
     {
         $book = Book::FindOrFail($id);
 
-        return view('book.show', compact('book'));
+        $isInBookCase  = false;
+
+        if(Auth::user()) {
+            $isInBookCase = $this->book->isInBookCase(Auth::user()->id, $id);
+        }
+
+        return view('book.show', [
+            'book' => $book,
+            'isInBookCase' => $isInBookCase
+        ]);
     }
 
     /**

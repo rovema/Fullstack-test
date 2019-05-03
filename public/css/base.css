@@ -1285,7 +1285,7 @@ table.fc-border-separate {
 
 .zoom:hover {
     position:relative;
-    width:400px;
+    width:200px;
     height:auto;
     display:block;
     z-index:999;

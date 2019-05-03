@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\BookCase;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookCaseController extends Controller
 {
@@ -14,17 +15,29 @@ class BookCaseController extends Controller
      */
     public function index()
     {
-        //
+        $bookcase = BookCase::all()->where('id_user', Auth::user()->id);
+
+        return view('bookcase.index', compact('bookcase'));
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function create()
+    public function update(Request $request, $id)
     {
-        //
+        $bookcase = BookCase::findOrFail($id);
+
+        dump($id);
+        dd($request->idBook);
+
+        if ($bookcase->status == false) {
+            $bookcase->status = true;
+            $bookcase->save();
+        }
+
+        return redirect()->route('books.show', $request->idBook);
     }
 
     /**
@@ -35,51 +48,24 @@ class BookCaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        BookCase::create([
+           'id_book' => $request->id,
+            'id_user' => Auth::user()->id
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\BookCase  $bookCase
-     * @return \Illuminate\Http\Response
-     */
-    public function show(BookCase $bookCase)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\BookCase  $bookCase
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(BookCase $bookCase)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\BookCase  $bookCase
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, BookCase $bookCase)
-    {
-        //
+        return redirect()->route('bookcase.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\BookCase  $bookCase
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BookCase $bookCase)
+    public function destroy($id)
     {
-        //
+        BookCase::destroy($id);
+
+        return redirect()->route('bookcase.index');
     }
 }

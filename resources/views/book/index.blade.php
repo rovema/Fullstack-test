@@ -1,7 +1,6 @@
 @extends('layout.master')
 
 @section('content')
-    @include('layout.errors')
     <div class="widget widget-table action-table">
         <div class="widget-header"> <i class="icon-th-list"></i>
             <h3>Livros Cadastrados</h3>
@@ -13,8 +12,8 @@
                 <thead>
                 <tr>
                     <th>Imagem</th>
-                    <th>Titulo</th>
-                    <th>Descricao</th>
+                    <th>Título</th>
+                    <th>Descrição</th>
                     <th class="td-actions" width="210px;"></th>
                 </tr>
                 </thead>

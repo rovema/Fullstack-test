@@ -14,4 +14,18 @@ class Book extends Model
     protected $fillable = [
         'title', 'description', 'photo'
     ];
+
+    /**
+     * @param $userId
+     * @param $bookId
+     * @return bool
+     */
+    public function isInBookCase($userId, $bookId)
+    {
+        return $this->join('book_cases', 'books.id', 'book_cases.id_book')
+                    ->where('books.id', $bookId)
+                    ->where('book_cases.id_user', $userId)
+                    ->get()
+                    ->count() > 0;
+    }
 }

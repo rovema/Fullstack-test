@@ -12,6 +12,14 @@ class BookCase extends Model
      * @var array
      */
     protected $fillable = [
-        'id_book'
+        'id_user', 'id_book'
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function book()
+    {
+        return $this->belongsTo(Book::class, 'id_book', 'id');
+    }
 }
