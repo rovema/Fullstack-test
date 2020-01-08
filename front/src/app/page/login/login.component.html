@@ -8,17 +8,31 @@
     </div>
     <mat-card-content>
       <mat-card-title>Fazer login</mat-card-title>
-      <form>
+      <form [formGroup]="formAuth">
         <div fxLayout="column" fxLayoutAlign="center stretch">
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline" fxFlex="100">
             <mat-label>Email</mat-label>
-            <input matInput placeholder="Email" type="email" required />
+            <input
+              matInput
+              placeholder="Email"
+              type="email"
+              required
+              formControlName="email"
+              autocomplete="email"
+            />
             <mat-icon matSuffix>mail</mat-icon>
             <!-- <mat-hint>Hint</mat-hint> -->
           </mat-form-field>
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline" fxFlex="100">
             <mat-label>Senha</mat-label>
-            <input matInput placeholder="Senha" type="password" required />
+            <input
+              matInput
+              placeholder="Senha"
+              type="password"
+              required
+              formControlName="pass"
+              autocomplete="current-password"
+            />
             <mat-icon matSuffix>vpn_key</mat-icon>
             <!-- <mat-hint>Hint</mat-hint> -->
           </mat-form-field>

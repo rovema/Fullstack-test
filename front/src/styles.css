@@ -27,3 +27,8 @@ div#main-container {
     padding: 0;
   }
 }
+
+div#img-header-center {
+  align-items: center;
+  text-align: center;
+}

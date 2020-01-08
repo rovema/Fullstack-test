@@ -32,7 +32,4 @@ span.buttonText {
   /* Use the Roboto font that is loaded in the <head> */
   font-family: "Roboto", sans-serif;
 }
-div#img-header-center {
-  align-items: center;
-  text-align: center;
-}
+

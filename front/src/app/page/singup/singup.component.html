@@ -1,24 +1,126 @@
 <div class="padding-min-100">
-  <mat-card style="max-width: 400px; margin: 0 auto;">
+  <mat-card style="max-width: 500px; margin: 0 auto;">
     <div id="img-header-center">
       <img
         src="/assets/book_icon.png"
         style="margin: 0 auto; text-align: center; align-self: center;"
       />
+      <mat-card-title>
+        Cadastre-se
+      </mat-card-title>
     </div>
     <mat-card-content>
-        <mat-vertical-stepper>
-            <mat-step label="label1">
-                <mat-form-field>
-                    <input matInput placeholder="label" value="value">
-                </mat-form-field>
-            </mat-step>
-            <mat-step label="label2">
-                <mat-form-field>
-                    <input matInput placeholder="label" >
-                </mat-form-field>
-            </mat-step>
-        </mat-vertical-stepper>
+      <mat-vertical-stepper [linear]="isLinear" #stepper>
+        <mat-step label="Email" [stepControl]="firstFormGroup">
+          <form [formGroup]="firstFormGroup">
+            <div fxLayout="column" fxLayoutAlign="center stretch">
+              <mat-form-field appearance="outline" fxFlex="100">
+                <mat-label>Email</mat-label>
+                <input
+                  matInput
+                  placeholder="Email"
+                  value=""
+                  type="email"
+                  autocomplete="off"
+                  formControlName="firstCtrl"
+                  required
+                />
+                <mat-icon matSuffix>mail</mat-icon>
+                <mat-error
+                  *ngIf="
+                    firstFormGroup.get('firstCtrl').hasError('email') &&
+                    !firstFormGroup.get('firstCtrl').hasError('required')
+                  "
+                >
+                  Entre com um email valido
+                </mat-error>
+                <mat-error
+                  *ngIf="firstFormGroup.get('firstCtrl').hasError('required')"
+                >
+                  Email é
+                  <strong>obrigatorio</strong>
+                </mat-error>
+              </mat-form-field>
+              <div>
+                <button mat-raised-button color="primary" matStepperNext>
+                  Proximo
+                </button>
+              </div>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step label="Senha" [stepControl]="secondFormGroup">
+          <form [formGroup]="secondFormGroup">
+            <div fxLayout="column" fxLayoutAlign="center stretch">
+              <mat-form-field appearance="outline" fxFlex="100">
+                <input
+                  matInput
+                  placeholder="Senha"
+                  type="password"
+                  autocomplete="off"
+                  formControlName="secondCtrl"
+                />
+                <mat-icon matSuffix>lock</mat-icon>
+                <mat-error
+                  *ngIf="secondFormGroup.get('secondCtrl').hasError('required')"
+                >
+                  Senha é
+                  <strong>obrigatorio</strong>
+                </mat-error>
+                <mat-error
+                  *ngIf="
+                    secondFormGroup.get('secondCtrl').hasError('minlength')
+                  "
+                >
+                  Senha menor que 6 caracteres
+                </mat-error>
+                <mat-error
+                  *ngIf="
+                    secondFormGroup.get('secondCtrl').hasError('maxlength')
+                  "
+                >
+                  Senha maior que 16 caracteres
+                </mat-error>
+              </mat-form-field>
+              <div
+                fxLayout="column"
+                fxLayoutAlign="center stretch"
+                style="padding-bottom: 20px;"
+              >
+                <ngx-recaptcha2
+                  #captchaElem
+                  [siteKey]="siteKey"
+                  (reset)="handleReset()"
+                  (ready)="handleReady()"
+                  (load)="handleLoad()"
+                  (success)="handleSuccess($event)"
+                  (expire)="handleExpire()"
+                  (error)="handleError()"
+                  [useGlobalDomain]="false"
+                  [theme]="theme"
+                  hl="pt"
+                  [type]="type"
+                  formControlName="recaptchaFRM"
+                >
+                </ngx-recaptcha2>
+              </div>
+              <div>
+                <button
+                  (click)="createUser()"
+                  color="primary"
+                  [disabled]="
+                    secondFormGroup.get('recaptchaFRM').hasError('required')
+                  "
+                  mat-raised-button
+                  matStepperNext
+                >
+                  Criar conta
+                </button>
+              </div>
+            </div>
+          </form>
+        </mat-step>
+      </mat-vertical-stepper>
     </mat-card-content>
   </mat-card>
 </div>
