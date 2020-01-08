@@ -13,13 +13,22 @@ import { SingupComponent } from "./page/singup/singup.component";
 import { NotFoundComponent } from "./page/not-found/not-found.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { NgxCaptchaModule } from "ngx-captcha";
+import { AngularFireModule } from "@angular/fire";
+import { environment } from "src/environments/environment";
+import { AngularFireAuthModule } from "@angular/fire/auth";
+import { ApiService } from "./services/api.service";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { LoadingBarHttpClientModule } from "@ngx-loading-bar/http-client";
+import { LoadingBarModule } from "@ngx-loading-bar/core";
+import { BooksComponent } from './page/books/books.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SingupComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    BooksComponent
   ],
   imports: [
     BrowserModule,
@@ -29,9 +38,16 @@ import { NgxCaptchaModule } from "ngx-captcha";
     RouterModule.forRoot([]),
     MaterialAllStyle,
     FlexLayoutModule,
-    NgxCaptchaModule
+    NgxCaptchaModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule, // auth
+    LoadingBarHttpClientModule,
+    LoadingBarModule
   ],
-  providers: [],
+  providers: [
+    ApiService,
+    { provide: HTTP_INTERCEPTORS, useClass: ApiService, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
