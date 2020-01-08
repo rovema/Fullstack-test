@@ -10,15 +10,6 @@
             "name": "Attach to Chrome",
             "port": 4200,
             "webRoot": "${workspaceFolder}"
-        },
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Launch Program",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "program": "${workspaceFolder}\\serve"
         }
     ]
 }
