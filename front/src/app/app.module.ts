@@ -20,7 +20,8 @@ import { ApiService } from "./services/api.service";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { LoadingBarHttpClientModule } from "@ngx-loading-bar/http-client";
 import { LoadingBarModule } from "@ngx-loading-bar/core";
-import { BooksComponent } from './page/books/books.component';
+import { BooksComponent } from "./page/books/books.component";
+import { ToastrModule } from "ngx-toastr";
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { BooksComponent } from './page/books/books.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule, // auth
     LoadingBarHttpClientModule,
-    LoadingBarModule
+    LoadingBarModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     ApiService,

@@ -7,6 +7,8 @@ import {
 } from "@angular/forms";
 import { environment } from "src/environments/environment";
 import { InvisibleReCaptchaComponent } from "ngx-captcha";
+import { ApiService } from "src/app/services/api.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-singup",
@@ -28,7 +30,12 @@ export class SingupComponent implements OnInit {
   public recaptcha: any = null;
   @ViewChild("captchaElem", { static: false })
   captchaElem: InvisibleReCaptchaComponent;
-  constructor(private formB: FormBuilder, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private formB: FormBuilder,
+    private cdr: ChangeDetectorRef,
+    public api: ApiService,
+  
+  ) {}
 
   ngOnInit() {
     this.firstFormGroup = new FormGroup({
@@ -46,6 +53,10 @@ export class SingupComponent implements OnInit {
 
   createUser() {
     console.log(this.secondFormGroup.value, this.firstFormGroup.value);
+    this.api.doRegister(
+      this.firstFormGroup.get("firstCtrl").value,
+      this.secondFormGroup.get("secondCtrl").value
+    );
   }
 
   execute(): void {
