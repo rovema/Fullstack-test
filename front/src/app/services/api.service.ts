@@ -17,6 +17,7 @@ import { LoadingBarService } from "@ngx-loading-bar/core";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { AngularFireStorage } from "@angular/fire/storage";
+import { Book } from "../model/Book";
 @Injectable({
   providedIn: "root"
 })
@@ -118,6 +119,37 @@ export class ApiService implements HttpInterceptor {
         .then(tokenOptions => {
           return this.http
             .post(this.baseurl + rota, obj, { headers: tokenOptions })
+            .subscribe(
+              res => {
+                this.loadingBar.complete();
+                observer.next(res);
+                observer.complete();
+              },
+              err => {
+                this.loadingBar.complete();
+                observer.error(err);
+                observer.complete();
+              }
+            );
+        })
+        .catch((error: any) => {
+          this.loadingBar.complete();
+          observer.error(error);
+          observer.complete();
+        });
+    });
+  }
+  private getData(rota, param?): Observable<any> {
+    this.loadingBar.start();
+    let params = {};
+    if (param) {
+      params = param;
+    }
+    return new Observable(observer => {
+      this.getTokenHeader()
+        .then(tokenOptions => {
+          return this.http
+            .get(this.baseurl + rota, { headers: tokenOptions, params })
             .subscribe(
               res => {
                 this.loadingBar.complete();
@@ -298,6 +330,23 @@ export class ApiService implements HttpInterceptor {
         },
         err => {
           this.toastr.error("Falha ao cadastrar livro", "Error!!");
+          console.error(err);
+          observer.error(err);
+          observer.unsubscribe();
+        }
+      );
+    });
+  }
+
+  public getBooksUser(): Observable<Book[]> {
+    return new Observable(observer => {
+      this.getData("books").subscribe(
+        res => {
+          console.log(res);
+          observer.next(res);
+        },
+        err => {
+          this.toastr.error("Falha ao listar todos os livros", "Error!!");
           console.error(err);
           observer.error(err);
           observer.unsubscribe();
