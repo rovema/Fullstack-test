@@ -38,6 +38,7 @@ export class ApiService {
         if (user) {
           this.uid = user.uid;
           this.email = user.email;
+          console.log(this.email, this.uid);
           user
             .getIdToken(true)
             .then(res => {
@@ -62,7 +63,7 @@ export class ApiService {
     });
   }
 
-  doRegister(email, pass) {
+  public doRegister(email, pass) {
     this.loadingBar.start();
     return new Promise<any>((resolve, reject) => {
       firebase
@@ -71,9 +72,51 @@ export class ApiService {
         .then(res => {
           this.toastr.success("Usario Criado com Sucesso", "Sucesso!!!");
           this.rota.navigate(["books"]);
+          resolve(res);
         })
         .catch(erro => {
           this.toastr.error(erro, "Falha ao criar usario");
+          reject(erro);
+        })
+        .finally(() => this.loadingBar.complete());
+    });
+  }
+  public doLogout() {
+    this.loadingBar.start();
+    return new Promise<any>((resolve, reject) => {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.toastr.success("Voce saiu da aplicação", "Sucesso!!!");
+          this.token = null;
+          this.uid = null;
+          this.email = null;
+          localStorage.removeItem("token");
+          this.rota.navigate(["login"]);
+          resolve();
+        })
+        .catch(erro => {
+          this.toastr.error(erro, "Falha na conexão");
+          reject(erro);
+        })
+        .finally(() => this.loadingBar.complete());
+    });
+  }
+  public doLoginEmailPass(email, pass) {
+    this.loadingBar.start();
+    return new Promise<any>((resolve, reject) => {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(email, pass)
+        .then(res => {
+          this.toastr.success("Usario logado com Sucesso", "Sucesso!!!");
+          this.rota.navigate(["books"]);
+          resolve(res);
+        })
+        .catch(erro => {
+          this.toastr.error(erro, "Verifique suas credenciais!!!");
+          reject(erro);
         })
         .finally(() => this.loadingBar.complete());
     });

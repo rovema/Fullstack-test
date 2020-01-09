@@ -2,7 +2,12 @@
 <mat-toolbar color="primary">
   <span>Estante de livros</span>
   <span class="example-spacer"></span>
-  <button mat-raised-button [routerLink]="['/auth']">Cadastre-se</button>
+  <button *ngIf="!api.uid" mat-raised-button [routerLink]="['/auth']">
+    Cadastre-se
+  </button>
+  <button *ngIf="api.uid" mat-raised-button (click)="logout()">
+    Sair
+  </button>
 </mat-toolbar>
 <div
   color="primary"
