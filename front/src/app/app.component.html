@@ -1,4 +1,4 @@
-<ngx-loading-bar></ngx-loading-bar>
+<ngx-loading-bar color="#7a00d6"></ngx-loading-bar>
 <mat-toolbar color="primary">
   <span>Estante de livros</span>
   <span class="example-spacer"></span>
@@ -18,7 +18,7 @@
       <mat-icon>post_add</mat-icon>
       Novo livro
     </button>
-    <button mat-menu-item>
+    <button mat-menu-item  [routerLink]="['/books']">
       <mat-icon>book</mat-icon>
       Listar livros
     </button>
