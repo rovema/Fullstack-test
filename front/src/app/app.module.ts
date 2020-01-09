@@ -22,6 +22,7 @@ import { LoadingBarHttpClientModule } from "@ngx-loading-bar/http-client";
 import { LoadingBarModule } from "@ngx-loading-bar/core";
 import { BooksComponent } from "./page/books/books.component";
 import { ToastrModule } from "ngx-toastr";
+import { NewBookComponent } from './page/new-book/new-book.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ToastrModule } from "ngx-toastr";
     LoginComponent,
     SingupComponent,
     NotFoundComponent,
-    BooksComponent
+    BooksComponent,
+    NewBookComponent
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ApiService } from "src/app/services/api.service";
 import { ToastrService } from "ngx-toastr";
+import { Title } from "@angular/platform-browser";
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
@@ -9,9 +10,14 @@ import { ToastrService } from "ngx-toastr";
 })
 export class LoginComponent implements OnInit {
   formAuth: FormGroup;
-  constructor(public api: ApiService, public toastr: ToastrService) {}
+  constructor(
+    public api: ApiService,
+    public toastr: ToastrService,
+    public title: Title
+  ) {}
 
   ngOnInit() {
+    this.title.setTitle("Fazer Login");
     this.formAuth = new FormGroup({
       email: new FormControl("", [Validators.email, Validators.required]),
       pass: new FormControl("", [

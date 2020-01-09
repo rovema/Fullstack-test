@@ -9,6 +9,7 @@ import { environment } from "src/environments/environment";
 import { InvisibleReCaptchaComponent } from "ngx-captcha";
 import { ApiService } from "src/app/services/api.service";
 import { Router } from "@angular/router";
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: "app-singup",
@@ -34,10 +35,11 @@ export class SingupComponent implements OnInit {
     private formB: FormBuilder,
     private cdr: ChangeDetectorRef,
     public api: ApiService,
-  
+    public title: Title
   ) {}
 
   ngOnInit() {
+    this.title.setTitle("Cadastro de usuario");
     this.firstFormGroup = new FormGroup({
       firstCtrl: new FormControl("", [Validators.email, Validators.required])
     });

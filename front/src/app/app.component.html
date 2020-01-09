@@ -5,9 +5,28 @@
   <button *ngIf="!api.uid" mat-raised-button [routerLink]="['/auth']">
     Cadastre-se
   </button>
-  <button *ngIf="api.uid" mat-raised-button (click)="logout()">
-    Sair
+  <button
+    *ngIf="api.uid"
+    mat-icon-button
+    [matMenuTriggerFor]="menu"
+    aria-label="Example icon-button with a menu"
+  >
+    <mat-icon>menu</mat-icon>
   </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item [routerLink]="['/new-book']">
+      <mat-icon>post_add</mat-icon>
+      Novo livro
+    </button>
+    <button mat-menu-item>
+      <mat-icon>book</mat-icon>
+      Listar livros
+    </button>
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>exit_to_app</mat-icon>
+      Sair
+    </button>
+  </mat-menu>
 </mat-toolbar>
 <div
   color="primary"

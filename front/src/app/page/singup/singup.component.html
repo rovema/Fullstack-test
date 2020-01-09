@@ -114,7 +114,7 @@
                   mat-raised-button
                   matStepperNext
                 >
-                  Criar conta
+                  Criar sua conta
                 </button>
               </div>
             </div>
@@ -122,5 +122,10 @@
         </mat-step>
       </mat-vertical-stepper>
     </mat-card-content>
+    <mat-card-footer>
+      <p style="cursor: pointer;" [routerLink]="['/login']">
+        Click aqui se ja possui cadastro
+      </p>
+    </mat-card-footer>
   </mat-card>
 </div>
