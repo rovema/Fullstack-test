@@ -23,7 +23,8 @@ import { LoadingBarModule } from "@ngx-loading-bar/core";
 import { BooksComponent } from "./page/books/books.component";
 import { ToastrModule } from "ngx-toastr";
 import { NewBookComponent } from './page/new-book/new-book.component';
-
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,9 +45,11 @@ import { NewBookComponent } from './page/new-book/new-book.component';
     NgxCaptchaModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule, // auth
+    AngularFireStorageModule,
     LoadingBarHttpClientModule,
     LoadingBarModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    ImageCropperModule
   ],
   providers: [
     ApiService,

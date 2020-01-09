@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
+import { ApiService } from 'src/app/services/api.service';
+import { Book } from 'src/app/model/Book';
 
 @Component({
   selector: "app-books",
@@ -7,9 +9,16 @@ import { Title } from "@angular/platform-browser";
   styleUrls: ["./books.component.css"]
 })
 export class BooksComponent implements OnInit {
-  constructor(public title: Title) {}
+  books: Book[] = [];
+  constructor(public title: Title, public api: ApiService) {
+    if(api.)
+  }
 
   ngOnInit() {
-    this.title.setTitle("Estante de Livros - Magno Carvalho");
+    this.title.setTitle("Seus Livros - Magno Carvalho");
+  }
+
+  getBooks(){
+    this.api.getBooksUser();
   }
 }

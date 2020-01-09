@@ -28,6 +28,9 @@ mongoose
       "🚀 Mongo DB inicializado com sucesso as",
       moment().format("dddd, MMMM Do YYYY, h:mm:ss a")
     );
+  })
+  .catch(e => {
+    console.log("🤦🛑🛑🛑🤦", e);
   });
 
 app.use(function(req, res, next) {
@@ -75,11 +78,11 @@ var port = process.env.PORT || 1337;
 try {
   admin.initializeApp({
     credential: admin.credential.applicationDefault(),
-    databaseURL: `https://oficina2utfpr.firebaseio.com`
+    databaseURL: process.env.FIREBASE_DATABASE_URL
   });
-  console.log("🚀 Server app firebase iniciado");
+  console.log("🚀 Server app firebase iniciado -", process.env.projectId);
 } catch (e) {
-  console.log("🚀 Server app firebase falhou : ", e);
+  console.log("🤦🛑 Server app firebase falhou: \n", e);
 }
 app.listen(port, () => {
   console.log(`🚀 Server ready at http://localhost:${port}/api`);

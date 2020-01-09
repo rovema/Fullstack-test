@@ -14,7 +14,9 @@ export const environment = {
     appId: "1:870215955925:web:095074091a53e109f3795c",
     measurementId: "G-W03ZMGVM5V"
   },
-  captcha: "6LcLos0UAAAAAJWUxTtLeE0VxrTYrjJVcKxtLceQ"
+  captcha: "6LcLos0UAAAAAJWUxTtLeE0VxrTYrjJVcKxtLceQ",
+  baseURL: "http://localhost:3000/api/"
+
 };
 
 /*
