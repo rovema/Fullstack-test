@@ -69,9 +69,12 @@ export class ApiService {
         .auth()
         .createUserWithEmailAndPassword(email, pass)
         .then(res => {
+          this.toastr.success("Usario Criado com Sucesso", "Sucesso!!!");
           this.rota.navigate(["books"]);
         })
-        .catch(erro => {})
+        .catch(erro => {
+          this.toastr.error(erro, "Falha ao criar usario");
+        })
         .finally(() => this.loadingBar.complete());
     });
   }
