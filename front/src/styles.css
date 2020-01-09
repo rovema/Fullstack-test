@@ -33,3 +33,7 @@ div#img-header-center {
   align-items: center;
   text-align: center;
 }
+
+.example-spacer {
+  flex: 1 1 auto;
+}

@@ -1,11 +1,49 @@
+<mat-toolbar>
+  <div>
+    <form [formGroup]="formBooks" id="formBooks">
+      <mat-form-field>
+        <mat-label>Titulo</mat-label>
+        <input
+          matInput
+          placeholder="Buscar pelo nome do Livro"
+          type="text"
+          required
+          formControlName="title"
+          autocomplete="off"
+        />
+        <mat-icon matSuffix>menu_book</mat-icon>
+      </mat-form-field>
+    </form>
+  </div>
+</mat-toolbar>
+<mat-toolbar-row>
+  <span>Filtros</span> <span class="example-spacer"></span>
+  <mat-icon>filter</mat-icon>
+</mat-toolbar-row>
 <div fxLayout="row wrap" fxLayoutAlign="start start">
   <div class="example-card" *ngFor="let b of books">
     <mat-card>
       <mat-card-header>
+        <span matCardAvatar *ngIf="b.status" color="accent">
+          <mat-icon style="color: #15fd00;">thumb_up</mat-icon>
+        </span>
+        <span
+          matCardAvatar
+          style="color: #276d22;"
+          *ngIf="!b.status"
+          color="warn"
+        >
+          <mat-icon>thumb_down</mat-icon>
+        </span>
         <mat-card-title>{{ b.title }}</mat-card-title>
-        <mat-card-subtitle>{{ b.description }}</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="b.status">Lido</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="!b.status">Não Lido</mat-card-subtitle>
       </mat-card-header>
+
       <img mat-card-image [src]="b.picture" [alt]="b.title" />
+      <mat-card-content>
+        <mat-card-subtitle>{{ b.description }}</mat-card-subtitle>
+      </mat-card-content>
       <mat-card-actions>
         <button mat-raised-button color="primary">EDITAR</button>
         <button mat-raised-button color="accent">DELETAR</button>
