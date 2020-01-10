@@ -29,6 +29,7 @@
         <button
           mat-raised-button
           color="accent"
+          (click)="getBooksWithParam()"
           matTooltip="Pesquisar pelo titulo do livro"
         >
           <mat-icon>search</mat-icon> Pesquisar
@@ -37,7 +38,7 @@
     </form>
   </div>
   <span class="example-spacer"></span>
-  <button mat-mini-fab matTooltip="Recaregar lista e resetar filtros">
+  <button (click)="resetForm()" mat-mini-fab matTooltip="Recaregar lista e resetar filtros">
     <mat-icon>settings_backup_restore</mat-icon>
   </button>
 </mat-toolbar>

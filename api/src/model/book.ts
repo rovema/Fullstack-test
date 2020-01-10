@@ -13,10 +13,10 @@ export interface IBook extends mongoose.Document {
 }
 
 let schema = {
-  title: { type: String, required: true },
+  title: { type: String, required: true, index: true },
   description: { type: String, required: true },
   picture: { type: String, required: true },
-  status: { type: Boolean, required: true },
+  status: { type: Boolean, required: true, index: true },
   uid: { type: String, required: true, index: true },
   isDeleted: { type: Boolean, default: false }
 };

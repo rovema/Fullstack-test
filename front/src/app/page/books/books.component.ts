@@ -40,5 +40,14 @@ export class BooksComponent implements OnInit, AfterContentInit {
     });
   }
 
-  get;
+  getBooksWithParam() {
+    this.api.getBooksUserWithFilter(this.formBooks.value).subscribe(b => {
+      this.books = b;
+    });
+  }
+  
+  resetForm() {
+    this.formBooks.reset({ title: "", notRead: true, read: true });
+    this.getBooks();
+  }
 }
