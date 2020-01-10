@@ -47,10 +47,12 @@
               (change)="fileChangeEvent($event)"
               accept=".jpg,.jpeg,.png"
               style="padding-bottom: 10px;"
+              #fotos
             />
             <mat-error
               *ngIf="
-                !fotoThumbAplicado && !imageChangedEvent &&
+                !fotoThumbAplicado &&
+                !imageChangedEvent &&
                 formBook.get('picture').hasError('required')
               "
             >

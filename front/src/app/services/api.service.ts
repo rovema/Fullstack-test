@@ -23,7 +23,7 @@ import { Book } from "../model/Book";
 })
 export class ApiService implements HttpInterceptor {
   public user: Observable<firebase.User>;
-  private token: string = null;
+  public token: string = null;
   public uid: string = null;
   public email: string = null;
   private baseurl = environment.baseURL;
@@ -341,6 +341,22 @@ export class ApiService implements HttpInterceptor {
   public getBooksUser(): Observable<Book[]> {
     return new Observable(observer => {
       this.getData("books").subscribe(
+        res => {
+          console.log(res);
+          observer.next(res);
+        },
+        err => {
+          this.toastr.error("Falha ao listar todos os livros", "Error!!");
+          console.error(err);
+          observer.error(err);
+          observer.unsubscribe();
+        }
+      );
+    });
+  }
+  public getBooksUserWithFilter(filter): Observable<Book[]> {
+    return new Observable(observer => {
+      this.getData("books", filter).subscribe(
         res => {
           console.log(res);
           observer.next(res);

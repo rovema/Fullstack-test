@@ -12,17 +12,24 @@ import { FormGroup, FormControl } from "@angular/forms";
 export class BooksComponent implements OnInit, AfterContentInit {
   books: Book[] = [];
   formBooks: FormGroup;
+
   constructor(public title: Title, public api: ApiService) {}
 
   ngOnInit() {
     this.title.setTitle("Seus Livros - Magno Carvalho");
-    this.formBooks = new FormGroup({ title: new FormControl("") });
+    this.formBooks = new FormGroup({
+      title: new FormControl(""),
+      notRead: new FormControl(true),
+      read: new FormControl(true)
+    });
   }
 
   ngAfterContentInit(): void {
     this.api.user.subscribe(user => {
       if (user) {
-        this.getBooks();
+        user.getIdToken(true).then(r => {
+          this.getBooks();
+        });
       }
     });
   }

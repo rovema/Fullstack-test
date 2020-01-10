@@ -19,6 +19,8 @@ export class NewBookComponent implements OnInit {
 
   @ViewChild("cropthumb", { static: false })
   imageCropper: ImageCropperComponent;
+  @ViewChild("fotos", { static: false })
+  foto: any;
 
   constructor(
     public titulo: Title,
@@ -51,7 +53,14 @@ export class NewBookComponent implements OnInit {
       this.api.doUpload(this.fotoThumb).then(res => {
         this.formBook.get("picture").setValue(res);
         if (this.formBook.valid) {
-          this.api.doSaveBook(this.formBook.value).subscribe(book => {});
+          this.api.doSaveBook(this.formBook.value).subscribe(book => {
+            this.formBook.reset();
+            this.imageChangedEvent = "";
+            this.croppedImage = "";
+            this.fotoThumb = null;
+            this.fotoThumbAplicado = false;
+            this.foto = null;
+          });
         } else {
           this.formBook.markAllAsTouched();
         }
