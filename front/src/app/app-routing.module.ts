@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "books", component: BooksComponent },
   { path: "new-book", component: NewBookComponent },
-  { path: "edit-book", component: EditBookComponent },
+  { path: "edit-book/:id", component: EditBookComponent },
   { path: "", redirectTo: "/login", pathMatch: "full" },
   { path: "**", component: NotFoundComponent }
 ];

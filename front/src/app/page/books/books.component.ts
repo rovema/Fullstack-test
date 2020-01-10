@@ -3,6 +3,7 @@ import { Title } from "@angular/platform-browser";
 import { ApiService } from "src/app/services/api.service";
 import { Book } from "src/app/model/Book";
 import { FormGroup, FormControl } from "@angular/forms";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-books",
@@ -13,7 +14,11 @@ export class BooksComponent implements OnInit, AfterContentInit {
   books: Book[] = [];
   formBooks: FormGroup;
 
-  constructor(public title: Title, public api: ApiService) {}
+  constructor(
+    public title: Title,
+    public api: ApiService,
+    public router: Router
+  ) {}
 
   ngOnInit() {
     this.title.setTitle("Seus Livros - Magno Carvalho");
@@ -52,7 +57,9 @@ export class BooksComponent implements OnInit, AfterContentInit {
     });
   }
 
-  editBook(obj) {}
+  editBook(obj) {
+    this.router.navigate(["/edit-book", obj._id]);
+  }
 
   resetForm() {
     this.formBooks.reset({ title: "", notRead: true, read: true });

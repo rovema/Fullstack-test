@@ -10,6 +10,19 @@ class BookCtrl {
     }).sort({ title: 1 });
   }
 
+  public static getById(req, res, next) {
+    let param = req.query;
+    let uid = res.locals.uid;
+    return Book.findOne(
+      { _id: param.id, uid, isDeleted: false },
+      (err: any, data: any) => {
+        if (err) {
+          next(err);
+        } else res.json(data);
+      }
+    ).sort({ title: 1 });
+  }
+
   public static getAllBooksWithParams(req, res, next) {
     let param = req.query;
     let title = param ? new RegExp(param.title, "i") : "";
@@ -56,7 +69,7 @@ class BookCtrl {
   public static deleteBook(req, res, next) {
     let obj = req.query;
     let uid = res.locals.uid;
-    console.log({ obj, uid });
+    // console.log({ obj, uid });
     return Book.findOneAndUpdate(
       { uid, _id: obj.id },
       { isDeleted: true },

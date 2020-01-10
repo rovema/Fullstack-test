@@ -1,22 +1,27 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, OnDestroy } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ApiService } from "src/app/services/api.service";
 import { ToastrService } from "ngx-toastr";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ImageCropperComponent, ImageCroppedEvent } from "ngx-image-cropper";
+import { Router, ActivatedRoute, ParamMap } from "@angular/router";
+import { switchMap } from "rxjs/operators";
+import { Book } from "src/app/model/Book";
+import { Observable } from "rxjs";
 
 @Component({
   selector: "app-edit-book",
   templateUrl: "./edit-book.component.html",
   styleUrls: ["./edit-book.component.css"]
 })
-export class EditBookComponent implements OnInit {
+export class EditBookComponent implements OnInit, OnDestroy {
   formBook: FormGroup;
   imageChangedEvent: any = "";
   croppedImage: any = "";
   fotoThumb: string = null;
   fotoThumbAplicado = false;
-
+  book: Observable<Book>;
+  livro: Book;
   @ViewChild("cropthumb", { static: false })
   imageCropper: ImageCropperComponent;
   @ViewChild("fotos", { static: false })
@@ -24,24 +29,35 @@ export class EditBookComponent implements OnInit {
   constructor(
     public titulo: Title,
     public toastr: ToastrService,
-    public api: ApiService
+    public api: ApiService,
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
+  id: string;
+  private sub: any;
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
 
   ngOnInit() {
-    this.titulo.setTitle("Cadastrar Novo Livro");
-    this.formBook = new FormGroup({
-      title: new FormControl("", [
-        Validators.minLength(2),
-        Validators.required,
-        Validators.maxLength(100)
-      ]),
-      description: new FormControl("", [
-        Validators.minLength(2),
-        Validators.required,
-        Validators.maxLength(300)
-      ]),
-      picture: new FormControl(null, [Validators.required]),
-      status: new FormControl(false, [Validators.required])
+    let id = this.route.snapshot.paramMap.get("id");
+    this.api.getBooksUserId(id).subscribe(res => {
+      this.titulo.setTitle("Cadastrar Novo Livro");
+      this.formBook = new FormGroup({
+        title: new FormControl(res.title, [
+          Validators.minLength(2),
+          Validators.required,
+          Validators.maxLength(100)
+        ]),
+        description: new FormControl(res.description, [
+          Validators.minLength(2),
+          Validators.required,
+          Validators.maxLength(300)
+        ]),
+        picture: new FormControl(res.picture, [Validators.required]),
+        status: new FormControl(res.status, [Validators.required])
+      });
     });
   }
 
