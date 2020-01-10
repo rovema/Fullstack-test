@@ -4,13 +4,15 @@ import { LoginComponent } from "./page/login/login.component";
 import { SingupComponent } from "./page/singup/singup.component";
 import { NotFoundComponent } from "./page/not-found/not-found.component";
 import { BooksComponent } from "./page/books/books.component";
-import { NewBookComponent } from './page/new-book/new-book.component';
+import { NewBookComponent } from "./page/new-book/new-book.component";
+import { EditBookComponent } from "./page/edit-book/edit-book.component";
 
 const routes: Routes = [
   { path: "auth", component: SingupComponent },
   { path: "login", component: LoginComponent },
   { path: "books", component: BooksComponent },
   { path: "new-book", component: NewBookComponent },
+  { path: "edit-book", component: EditBookComponent },
   { path: "", redirectTo: "/login", pathMatch: "full" },
   { path: "**", component: NotFoundComponent }
 ];

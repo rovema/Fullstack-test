@@ -25,6 +25,7 @@ import { ToastrModule } from "ngx-toastr";
 import { NewBookComponent } from './page/new-book/new-book.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { EditBookComponent } from './page/edit-book/edit-book.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,8 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
     SingupComponent,
     NotFoundComponent,
     BooksComponent,
-    NewBookComponent
+    NewBookComponent,
+    EditBookComponent
   ],
   imports: [
     BrowserModule,

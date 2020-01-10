@@ -45,7 +45,15 @@ export class BooksComponent implements OnInit, AfterContentInit {
       this.books = b;
     });
   }
-  
+
+  deleteBook(id) {
+    this.api.deleteBook(id).subscribe(res => {
+      this.getBooks();
+    });
+  }
+
+  editBook(obj) {}
+
   resetForm() {
     this.formBooks.reset({ title: "", notRead: true, read: true });
     this.getBooks();

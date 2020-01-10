@@ -38,7 +38,11 @@
     </form>
   </div>
   <span class="example-spacer"></span>
-  <button (click)="resetForm()" mat-mini-fab matTooltip="Recaregar lista e resetar filtros">
+  <button
+    (click)="resetForm()"
+    mat-mini-fab
+    matTooltip="Recaregar lista e resetar filtros"
+  >
     <mat-icon>settings_backup_restore</mat-icon>
   </button>
 </mat-toolbar>
@@ -48,7 +52,6 @@
   <mat-icon>library_books</mat-icon>
 
   <span class="example-spacer"></span>
-  <div class="example-div"></div>
 </mat-toolbar-row>
 <mat-divider color="accent"></mat-divider>
 <div fxLayout="row wrap" fxLayoutAlign="start start">
@@ -76,8 +79,12 @@
         <mat-card-subtitle>{{ b.description }}</mat-card-subtitle>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button color="primary">EDITAR</button>
-        <button mat-raised-button color="accent">DELETAR</button>
+        <button mat-raised-button color="primary" (click)="editBook(b)">
+          EDITAR
+        </button>
+        <button mat-raised-button color="accent" (click)="deleteBook(b._id)">
+          DELETAR
+        </button>
       </mat-card-actions>
     </mat-card>
   </div>

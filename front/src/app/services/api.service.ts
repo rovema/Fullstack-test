@@ -171,6 +171,37 @@ export class ApiService implements HttpInterceptor {
     });
   }
 
+  private deleteData(rota, id): Observable<any> {
+    this.loadingBar.start();
+    return new Observable(observer => {
+      this.getTokenHeader()
+        .then(tokenOptions => {
+          return this.http
+            .delete(this.baseurl + rota, {
+              headers: tokenOptions,
+              params: { id }
+            })
+            .subscribe(
+              res => {
+                this.loadingBar.complete();
+                observer.next(res);
+                observer.complete();
+              },
+              err => {
+                this.loadingBar.complete();
+                observer.error(err);
+                observer.complete();
+              }
+            );
+        })
+        .catch((error: any) => {
+          this.loadingBar.complete();
+          observer.error(error);
+          observer.complete();
+        });
+    });
+  }
+
   private putData(rota, obj, param?): Observable<any> {
     this.loadingBar.start();
     let params = {};
@@ -342,7 +373,6 @@ export class ApiService implements HttpInterceptor {
     return new Observable(observer => {
       this.getData("books").subscribe(
         res => {
-          console.log(res);
           observer.next(res);
         },
         err => {
@@ -358,11 +388,27 @@ export class ApiService implements HttpInterceptor {
     return new Observable(observer => {
       this.getData("searchbooks", filter).subscribe(
         res => {
-          console.log(res);
           observer.next(res);
         },
         err => {
           this.toastr.error("Falha ao listar todos os livros", "Error!!");
+          console.error(err);
+          observer.error(err);
+          observer.unsubscribe();
+        }
+      );
+    });
+  }
+
+  public deleteBook(id): Observable<any> {
+    return new Observable(observer => {
+      this.deleteData("book", id).subscribe(
+        res => {
+          this.toastr.success("Livro removido com sucesso", "Sucesso!!!");
+          observer.next(res);
+        },
+        err => {
+          this.toastr.error("Falha ao deletar o livro selecionado", "Error!!");
           console.error(err);
           observer.error(err);
           observer.unsubscribe();

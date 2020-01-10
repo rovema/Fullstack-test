@@ -16,7 +16,7 @@ let schema = {
   title: { type: String, required: true, index: true },
   description: { type: String, required: true },
   picture: { type: String, required: true },
-  status: { type: Boolean, required: true, index: true },
+  status: { type: Boolean, required: true, index: true, default: false }, //default false
   uid: { type: String, required: true, index: true },
   isDeleted: { type: Boolean, default: false }
 };
