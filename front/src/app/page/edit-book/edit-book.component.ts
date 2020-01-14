@@ -22,10 +22,12 @@ export class EditBookComponent implements OnInit, OnDestroy {
   fotoThumbAplicado = false;
   book: Observable<Book>;
   livro: Book;
+  id: string = null;
   @ViewChild("cropthumb", { static: false })
   imageCropper: ImageCropperComponent;
   @ViewChild("fotos", { static: false })
   foto: any;
+  tmpPicture: string = null;
   constructor(
     public titulo: Title,
     public toastr: ToastrService,
@@ -33,41 +35,92 @@ export class EditBookComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router
   ) {}
-  id: string;
-  private sub: any;
-
-  ngOnDestroy() {
-    this.sub.unsubscribe();
-  }
 
   ngOnInit() {
-    let id = this.route.snapshot.paramMap.get("id");
-    this.api.getBooksUserId(id).subscribe(res => {
-      this.titulo.setTitle("Cadastrar Novo Livro");
-      this.formBook = new FormGroup({
-        title: new FormControl(res.title, [
-          Validators.minLength(2),
-          Validators.required,
-          Validators.maxLength(100)
-        ]),
-        description: new FormControl(res.description, [
-          Validators.minLength(2),
-          Validators.required,
-          Validators.maxLength(300)
-        ]),
-        picture: new FormControl(res.picture, [Validators.required]),
-        status: new FormControl(res.status, [Validators.required])
-      });
+    this.id = this.route.snapshot.paramMap.get("id");
+    this.api.user.subscribe(user => {
+      if (user) {
+        user.getIdToken(true).then(r => {
+          this.loadData();
+        });
+      }
+    });
+    this.formBook = new FormGroup({
+      title: new FormControl("", [
+        Validators.minLength(2),
+        Validators.required,
+        Validators.maxLength(100)
+      ]),
+      description: new FormControl("", [
+        Validators.minLength(2),
+        Validators.required,
+        Validators.maxLength(300)
+      ]),
+      picture: new FormControl("", [Validators.required]),
+      status: new FormControl(false, [Validators.required])
     });
   }
 
+  loadData() {
+    this.api.getBooksUserId(this.id).subscribe(res => {
+      this.titulo.setTitle("Editar Livro");
+      this.formBook.get("title").setValue(res.title);
+      this.formBook.get("status").setValue(res.status);
+      this.formBook.get("description").setValue(res.description);
+      this.formBook.get("picture").setValue(res.picture);
+      this.livro = res;
+      this.tmpPicture = res.picture;
+    });
+  }
+
+  deleteImgTmp() {
+    this.tmpPicture = null;
+    this.formBook.get("picture").setValue(null);
+  }
+
   saveBook() {
-    console.log(this.formBook.value);
+    this.api.loadingBar.start();
+    this.formBook.markAsUntouched();
+    if (this.formBook.valid) {
+      if (this.tmpPicture) {
+        this.api.putBook(this.formBook.value, this.id).subscribe(
+          res => {
+            this.api.loadingBar.complete();
+            this.router.navigate(["books"]);
+          },
+          err => {
+            this.api.loadingBar.complete();
+          }
+        );
+      } else {
+      }
+    } else {
+      if (this.fotoThumb) {
+        this.api.doUpload(this.fotoThumb).then(foto => {
+          this.formBook.get("picture").setValue(foto);
+          if (this.formBook.valid) {
+            this.api.putBook(this.formBook.value, this.id).subscribe(
+              book => {
+                this.api.loadingBar.complete();
+                this.router.navigate(["books"]);
+              },
+              err => {
+                this.api.loadingBar.complete();
+              }
+            );
+          }
+        });
+      } else {
+        this.api.loadingBar.complete();
+      }
+    }
+    this.formBook.markAllAsTouched();
   }
 
   fileChangeEvent(event: any): void {
     this.imageChangedEvent = event;
     this.fotoThumbAplicado = false;
+    this.deleteImgTmp();
   }
   imageCropped(event: ImageCroppedEvent) {
     this.croppedImage = event.base64;

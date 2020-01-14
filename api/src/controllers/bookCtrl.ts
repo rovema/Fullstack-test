@@ -13,6 +13,7 @@ class BookCtrl {
   public static getById(req, res, next) {
     let param = req.query;
     let uid = res.locals.uid;
+    // console.log(uid, param);
     return Book.findOne(
       { _id: param.id, uid, isDeleted: false },
       (err: any, data: any) => {
@@ -57,13 +58,25 @@ class BookCtrl {
   }
 
   public static putBook(req, res, next) {
+    let id = req.query.id.toString();
     let obj: IBook = req.body;
     obj.uid = res.locals.uid;
-    return Book.findByIdAndUpdate(obj._id, obj, (err: any, data: any) => {
-      if (err) {
-        next(err);
-      } else res.json(data);
-    });
+    console.log(id, obj);
+    return Book.findOneAndUpdate(
+      { _id: id, uid: obj.uid },
+      obj,
+      {
+        new: true
+      },
+      (err: any, data: any) => {
+        if (err) {
+          next(err);
+        } else {
+          console.log(data);
+          res.json(data);
+        }
+      }
+    );
   }
 
   public static deleteBook(req, res, next) {
@@ -73,6 +86,9 @@ class BookCtrl {
     return Book.findOneAndUpdate(
       { uid, _id: obj.id },
       { isDeleted: true },
+      {
+        new: true
+      },
       (err: any, data: any) => {
         if (err) {
           next(err);

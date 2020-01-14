@@ -206,7 +206,7 @@ export class ApiService implements HttpInterceptor {
     this.loadingBar.start();
     let params = {};
     if (param) {
-      params = { empresa: param };
+      params = param;
     }
 
     return new Observable(observer => {
@@ -376,7 +376,10 @@ export class ApiService implements HttpInterceptor {
           observer.next(res);
         },
         err => {
-          this.toastr.error("Falha ao listar todos os livros", "Error!!");
+          this.toastr.error(
+            "Falha ao buscar informaçoes do livro a ser editado",
+            "Error!!"
+          );
           console.error(err);
           observer.error(err);
           observer.unsubscribe();
@@ -425,6 +428,26 @@ export class ApiService implements HttpInterceptor {
         },
         err => {
           this.toastr.error("Falha ao deletar o livro selecionado", "Error!!");
+          console.error(err);
+          observer.error(err);
+          observer.unsubscribe();
+        }
+      );
+    });
+  }
+
+  public putBook(obj: Book, id): Observable<any> {
+    return new Observable(observer => {
+      this.putData("book", obj, { id }).subscribe(
+        res => {
+          this.toastr.success("Livro atualizado com sucesso", "Sucesso!!!");
+          observer.next(res);
+        },
+        err => {
+          this.toastr.error(
+            "Falha ao atualizar o livro selecionado" + err,
+            "Error!!"
+          );
           console.error(err);
           observer.error(err);
           observer.unsubscribe();

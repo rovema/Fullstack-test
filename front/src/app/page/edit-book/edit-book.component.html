@@ -3,7 +3,7 @@
     <mat-card-content *ngIf="livro">
       <div fxLayout="row">
         <mat-icon>book</mat-icon>
-        <mat-card-title>&nbsp;Novo Livro</mat-card-title>
+        <mat-card-title>&nbsp;Editar Livro</mat-card-title>
       </div>
       <form [formGroup]="formBook">
         <div fxLayout="column" fxLayoutAlign="center stretch">
@@ -41,7 +41,18 @@
             </mat-error>
           </mat-form-field>
           <mat-card-subtitle>Imagem do Livro *</mat-card-subtitle>
+
           <div fxLayout="column">
+            <div *ngIf="tmpPicture" fxLayout="row">
+              <img [src]="tmpPicture" matCardImageLarge />
+              <div
+                fxFlex="auto"
+                fxLayout="column"
+                fxLayoutAlign="center center"
+              >
+                <button mat-raised-button color="accent" (click)="deleteImgTmp()">Apagar imagem</button>
+              </div>
+            </div>
             <input
               type="file"
               (change)="fileChangeEvent($event)"
