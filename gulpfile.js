@@ -11,7 +11,7 @@ gulp.task("clean", function() {
 });
 
 gulp.task("compile", function() {
-  var stream = gulp.src(["src/**/*.ts"]).pipe(ts(tsConfig.compilerOptions)); // your ES2015 code
+  var stream = gulp.src(["api/**/*.ts"]).pipe(ts(tsConfig.compilerOptions)); // your ES2015 code
   return merge([
     stream.dts.pipe(gulp.dest("bin")),
     stream.js.pipe(gulp.dest("bin"))
@@ -22,7 +22,7 @@ gulp.task("server", function(done) {
   var stream = nodemon({
     ext: "ts",
     script: "bin/index.js", // run ES5 code
-    watch: "src", // watch ES2015 code
+    watch: "api", // watch ES2015 code
     tasks: ["compile"], // compile synchronously onChange
     done: done
   });
