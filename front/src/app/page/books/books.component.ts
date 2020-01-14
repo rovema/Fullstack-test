@@ -21,7 +21,7 @@ export class BooksComponent implements OnInit, AfterContentInit {
   ) {}
 
   ngOnInit() {
-    this.title.setTitle("Seus Livros - Magno Carvalho");
+    this.title.setTitle("Seus Livros");
     this.formBooks = new FormGroup({
       title: new FormControl(""),
       notRead: new FormControl(true),
@@ -42,6 +42,12 @@ export class BooksComponent implements OnInit, AfterContentInit {
   getBooks() {
     this.api.getBooksUser().subscribe(b => {
       this.books = b;
+      this.title.setTitle(
+        "Seus Livros - Total de " +
+          this.books.length +
+          " cadastros por:  " +
+          this.api.email
+      );
     });
   }
 
@@ -64,5 +70,22 @@ export class BooksComponent implements OnInit, AfterContentInit {
   resetForm() {
     this.formBooks.reset({ title: "", notRead: true, read: true });
     this.getBooks();
+  }
+
+  onlySelectNotRead() {
+    if (
+      !this.formBooks.get("notRead").value &&
+      !this.formBooks.get("read").value
+    ) {
+      this.formBooks.get("read").setValue(true);
+    }
+  }
+  onlySelectRead() {
+    if (
+      !this.formBooks.get("notRead").value &&
+      !this.formBooks.get("read").value
+    ) {
+      this.formBooks.get("notRead").setValue(true);
+    }
   }
 }

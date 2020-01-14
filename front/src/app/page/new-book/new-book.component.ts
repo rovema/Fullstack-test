@@ -77,6 +77,7 @@ export class NewBookComponent implements OnInit {
     if (event.base64) {
       this.fotoThumb = event.base64;
       this.formBook.get("picture").setValue(null);
+      this.formBook.get("status").setValue(false);
     }
   }
   imageLoaded() {
