@@ -4,6 +4,7 @@ import { ApiService } from "src/app/services/api.service";
 import { Book } from "src/app/model/Book";
 import { FormGroup, FormControl } from "@angular/forms";
 import { Router } from "@angular/router";
+import { CsvDataService } from "src/app/services/csv-data.service";
 
 @Component({
   selector: "app-books",
@@ -17,7 +18,8 @@ export class BooksComponent implements OnInit, AfterContentInit {
   constructor(
     public title: Title,
     public api: ApiService,
-    public router: Router
+    public router: Router,
+    public csv: CsvDataService
   ) {}
 
   ngOnInit() {
@@ -87,5 +89,14 @@ export class BooksComponent implements OnInit, AfterContentInit {
     ) {
       this.formBooks.get("notRead").setValue(true);
     }
+  }
+
+  exportBooks() {
+    const tmp = this.books.map(a => {
+      if (a) {
+        return { titulo: a.title, descricao: a.description };
+      }
+    });
+    this.csv.exportToCsv("books.csv", tmp);
   }
 }

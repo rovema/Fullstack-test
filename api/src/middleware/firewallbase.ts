@@ -1,5 +1,3 @@
-import moment = require("moment");
-
 const admin = require("firebase-admin");
 
 export default function firewallbase(req, res, next) {
@@ -11,7 +9,6 @@ export default function firewallbase(req, res, next) {
       .verifyIdToken(token[1])
       .then(decodedToken => {
         res.locals.uid = decodedToken.uid;
-        console.log('Autorizado para', decodedToken.email)
         next();
       })
       .catch(err => {

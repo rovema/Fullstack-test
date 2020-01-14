@@ -14,7 +14,7 @@ import { Observable } from "rxjs";
   templateUrl: "./edit-book.component.html",
   styleUrls: ["./edit-book.component.css"]
 })
-export class EditBookComponent implements OnInit, OnDestroy {
+export class EditBookComponent implements OnInit {
   formBook: FormGroup;
   imageChangedEvent: any = "";
   croppedImage: any = "";

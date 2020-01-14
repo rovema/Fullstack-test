@@ -56,6 +56,13 @@
   <mat-icon>library_books</mat-icon>
 
   <span class="example-spacer"></span>
+  <button
+    mat-raised-button
+    matTooltip="Exportar lista de livros no formato .csv"
+    (click)="exportBooks()"
+  >
+    Exportar .csv
+  </button>
 </mat-toolbar-row>
 <mat-divider color="accent"></mat-divider>
 <div fxLayout="row wrap" fxLayoutAlign="start start">

@@ -4,7 +4,7 @@ var nodemon = require("gulp-nodemon");
 var merge = require("merge2");
 var tsConfig = require("./tsconfig.json");
 var del = require("del");
-// var mocha = require("gulp-mocha");
+var mocha = require("gulp-mocha");
 
 gulp.task("clean", function() {
   return del(["bin"]);
@@ -27,13 +27,30 @@ gulp.task("server", function(done) {
     done: done
   });
   return stream
-    .on("restart", function() {})
+    .on("restart", function() {
+      gulp.series("test");
+    })
     .on("crash", function() {
       console.error("\nErro na API!\n");
       stream.emit("restart", 10); // restart the server in 10 seconds
     });
 });
 
+gulp.task("test", function() {
+  gulp
+    .src("test/test.js")
+    .pipe(mocha({ reporter: "list" }))
+    .once("error", err => {
+      console.error(err);
+      // process.exit(0);
+    })
+    .once("end", () => {
+      process.exit();
+    });
+});
+
 gulp.task("watch", gulp.parallel("compile"));
 
-gulp.task("default", gulp.series("clean", "watch", gulp.parallel("server")));
+gulp.task("init", gulp.series("clean", "watch", gulp.parallel("server")));
+
+gulp.task("default", gulp.series("init"));

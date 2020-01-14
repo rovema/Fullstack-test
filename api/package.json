@@ -11,13 +11,17 @@
     "author": "Magno Carvalho",
     "license": "ISC",
     "devDependencies": {
+        "@types/chai": "^4.2.7",
+        "@types/mocha": "^5.2.7",
         "chai": "^4.2.0",
+        "firebase-functions-test": "^0.1.7",
         "gulp": "^4.0.2",
         "gulp-mocha": "^6.0.0",
         "gulp-nodemon": "^2.4.2",
         "gulp-typescript": "^5.0.1",
         "merge2": "^1.2.3",
-        "mocha": "^6.1.4",
+        "mocha": "^6.2.2",
+        "ts-node": "^8.6.2",
         "typescript": "^3.5.2"
     },
     "dependencies": {
@@ -41,6 +45,8 @@
         "mongoose-transactions": "^1.1.1",
         "node": "^10.16.0",
         "path": "^0.12.7",
+        "request": "^2.88.0",
+        "request-promise": "^4.2.5",
         "simple-node-logger": "^18.12.23",
         "suspend": "^0.7.0"
     }
