@@ -48,6 +48,7 @@ app.options("*", function(req, res, next) {
   if (req.method == "OPTIONS") res.sendStatus(200);
 });
 app.use("/api", rota); //rotas api
+app.use("/", express.static(__dirname + "/front"));
 
 app.use(function(req, res, next) {
   let err: any;

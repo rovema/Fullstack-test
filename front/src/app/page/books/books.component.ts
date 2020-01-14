@@ -11,7 +11,7 @@ import { CsvDataService } from "src/app/services/csv-data.service";
   templateUrl: "./books.component.html",
   styleUrls: ["./books.component.css"]
 })
-export class BooksComponent implements OnInit, AfterContentInit {
+export class BooksComponent implements OnInit {
   books: Book[] = [];
   formBooks: FormGroup;
 
@@ -29,9 +29,6 @@ export class BooksComponent implements OnInit, AfterContentInit {
       notRead: new FormControl(true),
       read: new FormControl(true)
     });
-  }
-
-  ngAfterContentInit(): void {
     this.api.user.subscribe(user => {
       if (user) {
         user.getIdToken(true).then(r => {

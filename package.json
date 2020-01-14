@@ -2,9 +2,10 @@
   "name": "fullstack-test",
   "version": "1.0.0",
   "description": "Teste Rovema",
-  "main": "index.js",
+  "main": "bin/index.js",
   "scripts": {
     "start": "bin/index.js",
+    "dev": "gulp",
     "build": "gulp",
     "debug": "node --nolazy --inspect-brk=9229 bin/index.js",
     "test": "mocha test/test.js --timeout 10000"
