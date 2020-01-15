@@ -12,10 +12,10 @@ before_install:
 before_script:
   - npm install
   - npm install -g standard
-  - docker build -t magnos
+  - docker build -t magnos .
   - docker run magnos
   - sleep 3
 script:
   - npm run test
 after_script:
-  - docker-compose kill
+  - docker kill
