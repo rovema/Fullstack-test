@@ -2,12 +2,13 @@ FROM node:alpine
 
 WORKDIR ~/
 
-RUN npm i global add typescript@3.5.2 tslint mocha gulp-cli
+RUN npm i global add typescript@3.5.2 tslint mocha gulp-cli @angular/cli @angular/animations 
 
 ADD ./package.json .
 ADD ./gulpfile.js .
 ADD ./tsconfig.json .
 ADD ./firebase.json .
+ADD ./front/package.json ./front
 
 ENV apiKey=AIzaSyCBOJ_F1wvRGa40_0bTDCWfEXLfPPP7810
 ENV authDomain=magno-test-rovema.firebaseapp.com
@@ -18,15 +19,19 @@ ENV GOOGLE_APPLICATION_CREDENTIALS=firebase.json
 ENV FIREBASE_SERVICE_ACCOUNT_KEY_PATH=firebase.json
 ENV FIREBASE_CONFIG=firebase.json
 ENV FIREBASE_DATABASE_URL=https://magno-test-rovema.firebaseio.com
-ENV PORT=3000
 
 RUN npm i --save
 
 COPY /test ./test
 COPY /api ./api
+COPY /front ./front
 
 RUN npm run build
 
-EXPOSE 3000 80
+RUN cd ./front && npm i --save && npm run build
 
-CMD ["npm", "run", "docker"]
+RUN npm test
+
+EXPOSE 3000 2500
+
+CMD ["npm", "start"]
