@@ -4,7 +4,6 @@ import { NgModule } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { PoModule } from "@portinari/portinari-ui";
 import { RouterModule } from "@angular/router";
 import { LoginComponent } from "./page/login/login.component";
 import { MaterialAllStyle } from "./material.modules";

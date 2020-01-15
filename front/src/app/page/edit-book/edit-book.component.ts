@@ -6,8 +6,8 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ImageCropperComponent, ImageCroppedEvent } from "ngx-image-cropper";
 import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 import { switchMap } from "rxjs/operators";
-import { Book } from "src/app/model/Book";
 import { Observable } from "rxjs";
+import { Book } from 'src/app/model/book.model';
 
 @Component({
   selector: "app-edit-book",

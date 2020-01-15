@@ -1,10 +1,10 @@
 import { Component, OnInit, AfterContentInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ApiService } from "src/app/services/api.service";
-import { Book } from "src/app/model/Book";
 import { FormGroup, FormControl } from "@angular/forms";
 import { Router } from "@angular/router";
 import { CsvDataService } from "src/app/services/csv-data.service";
+import { Book } from 'src/app/model/book.model';
 
 @Component({
   selector: "app-books",

@@ -17,7 +17,8 @@ import { LoadingBarService } from "@ngx-loading-bar/core";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { AngularFireStorage } from "@angular/fire/storage";
-import { Book } from "../model/Book";
+import { Book } from '../model/book.model';
+
 @Injectable({
   providedIn: "root"
 })

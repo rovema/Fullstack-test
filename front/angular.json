@@ -21,7 +21,6 @@
             "aot": false,
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
-              "./node_modules/@portinari/style/css/po-theme-default.min.css",
               "src/styles.css",
               "src/material.scss"
             ],

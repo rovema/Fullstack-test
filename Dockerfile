@@ -8,7 +8,6 @@ ADD ./package.json .
 ADD ./gulpfile.js .
 ADD ./tsconfig.json .
 ADD ./firebase.json .
-ADD ./front/package.json ./front
 
 ENV apiKey=AIzaSyCBOJ_F1wvRGa40_0bTDCWfEXLfPPP7810
 ENV authDomain=magno-test-rovema.firebaseapp.com
@@ -21,17 +20,19 @@ ENV FIREBASE_CONFIG=firebase.json
 ENV FIREBASE_DATABASE_URL=https://magno-test-rovema.firebaseio.com
 
 RUN npm i --save
+RUN mkdir ./front
 
-COPY /test ./test
-COPY /api ./api
+COPY /test ./test/
+COPY /api ./api/
 COPY /front ./front
 
+ADD ./front/package.json ./front
 RUN npm run build
+RUN ls
+RUN cd front/ && npm i --save 
+RUN cd front/ && npm run build
+# RUN npm test
 
-RUN cd ./front && npm i --save && npm run build
-
-RUN npm test
-
-EXPOSE 3000 2500
+EXPOSE 1337
 
 CMD ["npm", "start"]
