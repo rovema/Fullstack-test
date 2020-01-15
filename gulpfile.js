@@ -5,6 +5,7 @@ var merge = require("merge2");
 var tsConfig = require("./tsconfig.json");
 var del = require("del");
 var mocha = require("gulp-mocha");
+var exec = require("gulp-exec");
 
 gulp.task("clean", function() {
   return del(["bin"]);
@@ -49,8 +50,18 @@ gulp.task("test", function() {
     });
 });
 
+gulp.task("start", function(cb) {
+  exec("node bin/index.js", function(err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+    cb(err);
+  });
+});
+
 gulp.task("watch", gulp.parallel("compile"));
 
 gulp.task("init", gulp.series("clean", "watch", gulp.parallel("server")));
+
+gulp.task("docker", gulp.parallel("start", "test"));
 
 gulp.task("default", gulp.series("init"));
