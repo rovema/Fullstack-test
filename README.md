@@ -27,6 +27,11 @@ $ cd front/
 $ npm i --save -d 
 ```
 
-#### Development server
 
-Execute o comando `ng serve` na pasta `front` para inciar o servidor em modo dev. Navegue para `http: // localhost: 4200 /`. O aplicativo será recarregado automaticamente se você alterar qualquer um dos arquivos de origem.
+#### Development API 
+
+Execute o comando `npm run dev` na raiz do projeto para inciar o servidor em modo dev. Navegue para `http://localhost:1337/`. 
+
+#### Development FRONT 
+
+Execute o comando `ng serve` na pasta `front` para inciar o servidor em modo dev. Navegue para `http://localhost:4200/`. O aplicativo será recarregado automaticamente se você alterar qualquer um dos arquivos de origem.
