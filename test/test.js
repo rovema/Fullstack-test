@@ -1,6 +1,6 @@
 let chai = require("chai");
 let chaiHttp = require("chai-http");
-var should = chai.should();
+let should = require("should");
 const admin = require("firebase-admin");
 const rp = require("request-promise");
 let token = null;
@@ -9,6 +9,7 @@ const serviceAccount = require("../firebase.json");
 var port = process.env.PORT || 1337;
 
 chai.use(chaiHttp);
+var expect = chai.expect;
 
 describe("CRUD TEST", () => {
   before(async () => {
@@ -49,7 +50,7 @@ describe("CRUD TEST", () => {
         .post("/api/book")
         .send(livro)
         .end((err, res) => {
-          res.should.have.status(405);
+          expect(res).to.have.status(405);
           done();
         });
     });
@@ -67,7 +68,7 @@ describe("CRUD TEST", () => {
         .set("Authorization", "Bearer " + "invalido token")
         .send(livro)
         .end((err, res) => {
-          res.should.have.status(401);
+          expect(res).to.have.status(401);
           done();
         });
     });
@@ -85,7 +86,7 @@ describe("CRUD TEST", () => {
         .set("Authorization", "Bearer " + token)
         .send(livro)
         .end((err, res) => {
-          res.should.have.status(200);
+          expect(res).to.have.status(200);
           done();
         });
     });
@@ -97,7 +98,7 @@ describe("CRUD TEST", () => {
         .request("http://localhost:" + port)
         .get("/api/books")
         .end((err, res) => {
-          res.should.have.status(405);
+          expect(res).to.have.status(405);
           done();
         });
     });
@@ -107,7 +108,7 @@ describe("CRUD TEST", () => {
         .get("/api/books")
         .set("Authorization", "Token invalido")
         .end((err, res) => {
-          res.should.have.status(401);
+          expect(res).to.have.status(401);
           done();
         });
     });
@@ -118,7 +119,7 @@ describe("CRUD TEST", () => {
         .set("Authorization", "Bearer " + token)
         .end((err, res) => {
           id = res.body[0]._id;
-          res.should.have.status(200);
+          expect(res).to.have.status(200);
           done();
         });
     });
@@ -128,7 +129,7 @@ describe("CRUD TEST", () => {
         .get("/api/searchbooks?title=livro&read=true&notRead=true")
         .set("Authorization", "Bearer " + token)
         .end((err, res) => {
-          res.should.have.status(200);
+          expect(res).to.have.status(200);
           done();
         });
     });
@@ -138,7 +139,7 @@ describe("CRUD TEST", () => {
         .get("/api/book?id=" + id)
         .set("Authorization", "Bearer " + token)
         .end((err, res) => {
-          res.should.have.status(200);
+          expect(res).to.have.status(200);
           done();
         });
     });
@@ -149,7 +150,7 @@ describe("CRUD TEST", () => {
         .request("http://localhost:" + port)
         .delete("/api/book")
         .end((err, res) => {
-          res.should.have.status(405);
+          expect(res).to.have.status(405);
           done();
         });
     });
@@ -160,7 +161,7 @@ describe("CRUD TEST", () => {
         .delete("/api/book")
         .set("Authorization", "Token invalido")
         .end((err, res) => {
-          res.should.have.status(401);
+          expect(res).to.have.status(401);
           done();
         });
     });
@@ -172,7 +173,7 @@ describe("CRUD TEST", () => {
         .send({ id })
         .set("Authorization", "Bearer " + token)
         .end((err, res) => {
-          res.should.have.status(200);
+          expect(res).to.have.status(200);
           done();
         });
     });
@@ -192,7 +193,7 @@ describe("CRUD TEST", () => {
         .put("/api/book?id=" + id)
         .send(livro)
         .end((err, res) => {
-          res.should.have.status(405);
+          expect(res).to.have.status(405);
           done();
         });
     });
@@ -211,7 +212,7 @@ describe("CRUD TEST", () => {
         .set("Authorization", "Bearer " + "TokenInvalido")
         .send(livro)
         .end((err, res) => {
-          res.should.have.status(401);
+          expect(res).to.have.status(401);
           done();
         });
     });
@@ -230,7 +231,7 @@ describe("CRUD TEST", () => {
         .set("Authorization", "Bearer " + token)
         .send(livro)
         .end((err, res) => {
-          res.should.have.status(200);
+          expect(res).to.have.status(200);
           done();
         });
     });

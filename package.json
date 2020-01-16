@@ -38,6 +38,7 @@
     "gulp-typescript": "^5.0.1",
     "merge2": "^1.2.3",
     "mocha": "^6.2.2",
+    "should": "^13.2.3",
     "ts-node": "^8.6.2",
     "typescript": "^3.5.2"
   },
