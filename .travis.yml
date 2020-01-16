@@ -13,10 +13,9 @@ before_script:
   - npm install
   - npm install -g standard
   - docker build -t magnos .
-  - docker run -p 80:$PORT -d magnos
+  - docker run -p 80:{{$PORT}} -d magnos
   - sleep 3
 script:
-  - docker info
   - npm run test
 deploy:
   provider: heroku:git
