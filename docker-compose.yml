@@ -1,10 +1,21 @@
-version: '3'
+version: '2'
+# https://github.com/DanWahlin/NodeExpressMongoDBDockerApp/blob/master/docker-compose.yml
 
 services:
-  app:
-    build: .
-    command: npm start 
-    ports:
-      - 1337:1337
-       volumes:
-      - .:~/
+
+  node:
+    build:
+      context: .
+    networks:
+      - nodeapp-network
+    depends_on: 
+      - mongodb
+      
+  mongodb:
+    image: mongo
+    networks:
+      - nodeapp-network
+
+networks:
+  nodeapp-network:
+    driver: bridge

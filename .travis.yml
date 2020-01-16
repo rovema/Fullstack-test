@@ -13,13 +13,9 @@ before_script:
   - npm install
   - npm install -g standard
   - docker build -t magnos .
-  - docker run -p 80:{{$PORT}} -d magnos
+  - docker run -p 80:1337 -d magnos
   - sleep 3
 script:
   - npm run test
-deploy:
-  provider: heroku:git
-  api_key:  64bdf5a4-099e-4311-b0c0-b5a5d064bfba
-  edge: true # opt in to dpl v2
 after_script:
   - docker kill
