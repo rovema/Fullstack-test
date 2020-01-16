@@ -13,7 +13,7 @@ before_script:
   - npm install
   - npm install -g standard
   - docker build -t magnos .
-  - docker run -p 1337:80 -d magnos
+  - docker run -p 80:1337 -d magnos
   - sleep 3
 script:
   - docker info
