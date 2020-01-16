@@ -30,6 +30,7 @@ COPY /front ./front
 ADD ./front/package.json ./front
 RUN npm run build
 
+# TODO: remover comentario para produção 
 # RUN cd front/ && npm i --save
 # RUN cd front/ && npm run build
 # RUN npm test
