@@ -4,7 +4,7 @@ const admin = require("firebase-admin");
 const rp = require("request-promise");
 const serviceAccount = require("../firebase.json");
 let port = process.env.PORT || 1337;
-let HOST = process.env.HOST || "http://192.168.99.100:" || "http://HOST:";
+let HOST = process.env.HOST ||  "http://localhost:";
 // let HOST = "http://192.168.99.100:";
 
 let should = chai.should();
@@ -83,7 +83,7 @@ describe("CRUD TEST", () => {
         status: true
       };
       chai
-        .request(HOST + port)
+        .request(HOST)
         .post("/api/book")
         .set("Authorization", "Bearer " + token)
         .send(livro)
@@ -97,7 +97,7 @@ describe("CRUD TEST", () => {
   describe("/GET BOOKS", async () => {
     it("1 - Buscar livros sem token", done => {
       chai
-        .request(HOST + port)
+        .request("http://0.0.0.0")
         .get("/api/books")
         .end((err, res) => {
           expect(res).to.have.status(405);
@@ -106,7 +106,7 @@ describe("CRUD TEST", () => {
     });
     it("2 - Buscar livros com token invalido", done => {
       chai
-        .request(HOST + port)
+        .request("http://localhost")
         .get("/api/books")
         .set("Authorization", "Token invalido")
         .end((err, res) => {

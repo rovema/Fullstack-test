@@ -19,6 +19,7 @@ ENV FIREBASE_SERVICE_ACCOUNT_KEY_PATH=firebase.json
 ENV FIREBASE_CONFIG=firebase.json
 ENV FIREBASE_DATABASE_URL=https://magno-test-rovema.firebaseio.com
 ENV PORT=1337
+
 RUN npm i --save
 RUN mkdir ./front
 
