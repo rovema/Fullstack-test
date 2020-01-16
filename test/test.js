@@ -3,7 +3,7 @@ let chaiHttp = require("chai-http");
 const admin = require("firebase-admin");
 const rp = require("request-promise");
 const serviceAccount = require("../firebase.json");
-let port = process.env.PORT || 1337;
+let port = process.env.PORT || ":1337";
 let HOST = process.env.HOST || "http://localhost";
 // let HOST = "http://192.168.99.100:";
 

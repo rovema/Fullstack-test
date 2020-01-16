@@ -18,7 +18,7 @@ ENV GOOGLE_APPLICATION_CREDENTIALS=firebase.json
 ENV FIREBASE_SERVICE_ACCOUNT_KEY_PATH=firebase.json
 ENV FIREBASE_CONFIG=firebase.json
 ENV FIREBASE_DATABASE_URL=https://magno-test-rovema.firebaseio.com
-ENV PORT=1337
+# ENV PORT=1337
 
 RUN npm i --save
 RUN mkdir ./front
@@ -30,8 +30,8 @@ COPY /front ./front
 ADD ./front/package.json ./front
 RUN npm run build
 
-RUN cd front/ && npm i --save
-RUN cd front/ && npm run build
+# RUN cd front/ && npm i --save
+# RUN cd front/ && npm run build
 # RUN npm test
 
 EXPOSE 1337
