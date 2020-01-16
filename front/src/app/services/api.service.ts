@@ -17,7 +17,7 @@ import { LoadingBarService } from "@ngx-loading-bar/core";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { AngularFireStorage } from "@angular/fire/storage";
-import { Book } from '../model/book.model';
+import { Book } from "../model/book.model";
 
 @Injectable({
   providedIn: "root"
@@ -235,7 +235,7 @@ export class ApiService implements HttpInterceptor {
       if (tk) {
         await firebase
           .auth()
-          .currentUser.getIdToken()
+          .currentUser.getIdToken(true)
           .then(token => {
             this.token = token;
             localStorage.setItem("token", token);
@@ -300,14 +300,15 @@ export class ApiService implements HttpInterceptor {
         .finally(() => this.loadingBar.complete());
     });
   }
-  public doLoginEmailPass(email, pass) {
+  public async doLoginEmailPass(email, pass) {
     this.loadingBar.start();
-    return new Promise<any>((resolve, reject) => {
+    return new Promise<any>(async (resolve, reject) => {
       firebase
         .auth()
         .signInWithEmailAndPassword(email, pass)
-        .then(res => {
+        .then(async res => {
           this.toastr.success("Usario logado com Sucesso", "Sucesso!!!");
+          await this.getTokenHeader();
           this.rota.navigate(["books"]);
           resolve(res);
         })

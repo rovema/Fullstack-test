@@ -4,7 +4,7 @@ import { ApiService } from "src/app/services/api.service";
 import { FormGroup, FormControl } from "@angular/forms";
 import { Router } from "@angular/router";
 import { CsvDataService } from "src/app/services/csv-data.service";
-import { Book } from 'src/app/model/book.model';
+import { Book } from "src/app/model/book.model";
 
 @Component({
   selector: "app-books",
@@ -32,7 +32,9 @@ export class BooksComponent implements OnInit {
     this.api.user.subscribe(user => {
       if (user) {
         user.getIdToken(true).then(r => {
-          this.getBooks();
+          if (r) {
+            this.getBooks();
+          }
         });
       }
     });

@@ -15,7 +15,7 @@ export const environment = {
     measurementId: "G-W03ZMGVM5V"
   },
   captcha: "6LcLos0UAAAAAJWUxTtLeE0VxrTYrjJVcKxtLceQ",
-  baseURL: "http://localhost:3000/api/"
+  baseURL: "https://rovema-magno.herokuapp.com/api/"
 
 };
 
