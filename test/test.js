@@ -4,12 +4,12 @@ const admin = require("firebase-admin");
 const rp = require("request-promise");
 const serviceAccount = require("../firebase.json");
 let HOST ="http://localhost";
-
 let should = chai.should();
 let expect = chai.expect;
 chai.use(chaiHttp);
 let token = null;
 let id = null;
+
 describe("CRUD TEST", () => {
   before(async () => {
     try {
@@ -30,7 +30,7 @@ describe("CRUD TEST", () => {
         json: true
       });
       token = res.idToken;
-      console.log("Google admin ok, iniciando test em", HOST, port)
+      console.log("Google admin ok, iniciando test")
     } catch (error) {
       console.log(error);
     }

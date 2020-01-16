@@ -18,5 +18,9 @@ before_script:
 script:
   - docker info
   - npm run test
+deploy:
+  provider: heroku:git
+  api_key:  64bdf5a4-099e-4311-b0c0-b5a5d064bfba
+  edge: true # opt in to dpl v2
 after_script:
   - docker kill
