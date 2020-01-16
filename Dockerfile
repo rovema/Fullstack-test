@@ -2,7 +2,7 @@ FROM node:alpine
 
 WORKDIR ~/
 
-RUN npm i global add typescript@3.5.2 tslint mocha gulp-cli @angular/cli@8.3.21 @angular/animations@^8.2.14 
+RUN npm i global  caniuse-lite browserslist@latest typescript@3.5.2 tslint mocha chai-http chai gulp-cli @angular/cli@8.3.21 @angular/animations@^8.2.14 
 
 ADD ./package.json .
 ADD ./gulpfile.js .
@@ -29,7 +29,7 @@ COPY /front ./front
 ADD ./front/package.json ./front
 RUN npm run build
 
-RUN cd front/ && npm i --save 
+RUN cd front/ && npm i --save
 RUN cd front/ && npm run build
 # RUN npm test
 

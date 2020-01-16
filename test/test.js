@@ -1,16 +1,17 @@
 let chai = require("chai");
 let chaiHttp = require("chai-http");
-let should = require("should");
 const admin = require("firebase-admin");
 const rp = require("request-promise");
+const serviceAccount = require("../firebase.json");
+let port = process.env.PORT || 1337;
+let HOST = process.env.HOST || "http://192.168.99.100:" || "http://HOST:";
+// let HOST = "http://192.168.99.100:";
+
+let should = chai.should();
+let expect = chai.expect;
+chai.use(chaiHttp);
 let token = null;
 let id = null;
-const serviceAccount = require("../firebase.json");
-var port = process.env.PORT || 1337;
-
-chai.use(chaiHttp);
-var expect = chai.expect;
-
 describe("CRUD TEST", () => {
   before(async () => {
     try {
@@ -46,10 +47,11 @@ describe("CRUD TEST", () => {
         status: true
       };
       chai
-        .request("http://localhost:" + port)
+        .request(HOST + port)
         .post("/api/book")
         .send(livro)
         .end((err, res) => {
+          // console.log('Resposta do primeiro teste\n', res);
           expect(res).to.have.status(405);
           done();
         });
@@ -63,7 +65,7 @@ describe("CRUD TEST", () => {
         status: true
       };
       chai
-        .request("http://localhost:" + port)
+        .request(HOST + port)
         .post("/api/book")
         .set("Authorization", "Bearer " + "invalido token")
         .send(livro)
@@ -81,7 +83,7 @@ describe("CRUD TEST", () => {
         status: true
       };
       chai
-        .request("http://localhost:" + port)
+        .request(HOST + port)
         .post("/api/book")
         .set("Authorization", "Bearer " + token)
         .send(livro)
@@ -95,7 +97,7 @@ describe("CRUD TEST", () => {
   describe("/GET BOOKS", async () => {
     it("1 - Buscar livros sem token", done => {
       chai
-        .request("http://localhost:" + port)
+        .request(HOST + port)
         .get("/api/books")
         .end((err, res) => {
           expect(res).to.have.status(405);
@@ -104,7 +106,7 @@ describe("CRUD TEST", () => {
     });
     it("2 - Buscar livros com token invalido", done => {
       chai
-        .request("http://localhost:" + port)
+        .request(HOST + port)
         .get("/api/books")
         .set("Authorization", "Token invalido")
         .end((err, res) => {
@@ -114,7 +116,7 @@ describe("CRUD TEST", () => {
     });
     it("3 - Buscar livros com token valido", done => {
       chai
-        .request("http://localhost:" + port)
+        .request(HOST + port)
         .get("/api/books")
         .set("Authorization", "Bearer " + token)
         .end((err, res) => {
@@ -125,7 +127,7 @@ describe("CRUD TEST", () => {
     });
     it("4 - Buscar livros por filtro de nome e lido com token valido", done => {
       chai
-        .request("http://localhost:" + port)
+        .request(HOST + port)
         .get("/api/searchbooks?title=livro&read=true&notRead=true")
         .set("Authorization", "Bearer " + token)
         .end((err, res) => {
@@ -135,7 +137,7 @@ describe("CRUD TEST", () => {
     });
     it("5 - Buscar livro por ID com token valido", done => {
       chai
-        .request("http://localhost:" + port)
+        .request(HOST + port)
         .get("/api/book?id=" + id)
         .set("Authorization", "Bearer " + token)
         .end((err, res) => {
@@ -147,7 +149,7 @@ describe("CRUD TEST", () => {
   describe("/DELETE BOOK", async () => {
     it("1 - Deletar livro sem token", done => {
       chai
-        .request("http://localhost:" + port)
+        .request(HOST + port)
         .delete("/api/book")
         .end((err, res) => {
           expect(res).to.have.status(405);
@@ -157,7 +159,7 @@ describe("CRUD TEST", () => {
 
     it("2 - Deletar livro com token invalido", done => {
       chai
-        .request("http://localhost:" + port)
+        .request(HOST + port)
         .delete("/api/book")
         .set("Authorization", "Token invalido")
         .end((err, res) => {
@@ -168,7 +170,7 @@ describe("CRUD TEST", () => {
 
     it("3 - Deletar livro com token valido", done => {
       chai
-        .request("http://localhost:" + port)
+        .request(HOST + port)
         .delete("/api/book")
         .send({ id })
         .set("Authorization", "Bearer " + token)
@@ -189,7 +191,7 @@ describe("CRUD TEST", () => {
         status: false
       };
       chai
-        .request("http://localhost:" + port)
+        .request(HOST + port)
         .put("/api/book?id=" + id)
         .send(livro)
         .end((err, res) => {
@@ -207,7 +209,7 @@ describe("CRUD TEST", () => {
         status: false
       };
       chai
-        .request("http://localhost:" + port)
+        .request(HOST + port)
         .put("/api/book?id=" + id)
         .set("Authorization", "Bearer " + "TokenInvalido")
         .send(livro)
@@ -226,7 +228,7 @@ describe("CRUD TEST", () => {
         status: false
       };
       chai
-        .request("http://localhost:" + port)
+        .request(HOST + port)
         .put("/api/book?id=" + id)
         .set("Authorization", "Bearer " + token)
         .send(livro)
