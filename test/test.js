@@ -4,7 +4,7 @@ const admin = require("firebase-admin");
 const rp = require("request-promise");
 const serviceAccount = require("../firebase.json");
 let port = process.env.PORT || 1337;
-let HOST = process.env.HOST ||  "http://localhost:";
+let HOST = process.env.HOST || "http://localhost";
 // let HOST = "http://192.168.99.100:";
 
 let should = chai.should();
@@ -32,9 +32,11 @@ describe("CRUD TEST", () => {
         json: true
       });
       token = res.idToken;
+      console.log("Google admin ok, iniciando test em", HOST, port)
     } catch (error) {
       console.log(error);
     }
+
   });
 
   describe("/POST book", () => {
