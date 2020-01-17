@@ -46,7 +46,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use(express.static(__dirname + "www"));
+app.use(express.static(__dirname + "front"));
 
 app.options("*", function(req, res, next) {
   if (req.method == "OPTIONS") res.sendStatus(200);
