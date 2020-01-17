@@ -46,20 +46,20 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.use(express.static(__dirname + "www"));
+
 app.options("*", function(req, res, next) {
   if (req.method == "OPTIONS") res.sendStatus(200);
 });
 
+
 app.use("/api", rota); //rotas api
 
-app.use('/', function(req,res,next){
-  next();
-});
-app.use("/", express.static(__dirname + "/front"));
 
 app.use(function(req, res, next) {
   let err: any;
   err = new Error("Not found");
+  err.DOMINIO = "https://rovema-magno.herokuapp.com/"
   err.status = 404;
   next(err);
 });

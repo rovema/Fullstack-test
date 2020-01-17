@@ -7,19 +7,20 @@ var del = require("del");
 var mocha = require("gulp-mocha");
 var exec = require("gulp-exec");
 
-gulp.task("clean", function() {
+gulp.task("clean", function () {
   return del(["bin"]);
 });
 
-gulp.task("compile", function() {
-  var stream = gulp.src(["api/**/*.ts"]).pipe(ts(tsConfig.compilerOptions)); // your ES2015 code
+gulp.task("compile", function () {
+  var stream = gulp.src(["api/**/*.ts"]).pipe(ts(tsConfig.compilerOptions));
+  // your ES2015 code
   return merge([
     stream.dts.pipe(gulp.dest("bin")),
     stream.js.pipe(gulp.dest("bin"))
   ]);
 });
 
-gulp.task("server", function(done) {
+gulp.task("server", function (done) {
   var stream = nodemon({
     ext: "ts",
     script: "bin/index.js", // run ES5 code
@@ -28,16 +29,16 @@ gulp.task("server", function(done) {
     done: done
   });
   return stream
-    .on("restart", function() {
+    .on("restart", function () {
       gulp.series("test");
     })
-    .on("crash", function() {
+    .on("crash", function () {
       console.error("\nErro na API!\n");
       stream.emit("restart", 10); // restart the server in 10 seconds
     });
 });
 
-gulp.task("test", function() {
+gulp.task("test", function () {
   gulp
     .src("test/test.js")
     .pipe(mocha({ reporter: "list" }))
@@ -50,8 +51,8 @@ gulp.task("test", function() {
     });
 });
 
-gulp.task("start", function(cb) {
-  exec("node bin/index.js", function(err, stdout, stderr) {
+gulp.task("start", function (cb) {
+  exec("node bin/index.js", function (err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
     cb(err);

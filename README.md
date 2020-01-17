@@ -44,7 +44,7 @@ Software foi desenvolvido utilizando o conceito MEAN STACK, utilizando um conjun
 
 Banco de dados foi criado em ambiente [MONGO ATLAS](https://docs.atlas.mongodb.com/getting-started/) 
 
-![Diagrama do banco mongo](https://raw.githubusercontent.com/magnocarvalho/Fullstack-test/magno-carvalho/docs/diagram-mongoDB.png)
+![Diagrama do banco mongo](https://raw.githubusercontent.com/magnocarvalho/Fullstack-test/magno-carvalho/docs/diagram-mongoDB.PNG)
 
 
 ## Segurança
