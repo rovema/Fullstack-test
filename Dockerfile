@@ -1,14 +1,14 @@
 FROM node:alpine
 
 WORKDIR /opt
-
+# bibliotecas globais
 RUN npm i global  caniuse-lite browserslist@latest typescript@3.5.2 tslint mocha chai-http chai gulp-cli @angular/cli@8.3.21 @angular/animations@^8.2.14 
-
+# arquivos de configuração
 ADD ./package.json .
 ADD ./gulpfile.js .
 ADD ./tsconfig.json .
 ADD ./firebase.json .
-
+# variaveis de ambiente
 ENV apiKey=AIzaSyCBOJ_F1wvRGa40_0bTDCWfEXLfPPP7810
 ENV authDomain=magno-test-rovema.firebaseapp.com
 ENV projectId=magno-test-rovema
@@ -19,7 +19,7 @@ ENV FIREBASE_SERVICE_ACCOUNT_KEY_PATH=firebase.json
 ENV FIREBASE_CONFIG=firebase.json
 ENV FIREBASE_DATABASE_URL=https://magno-test-rovema.firebaseio.com
 ENV PORT=$PORT
-
+# instação das depedencias da API
 RUN npm i --save
 RUN mkdir ./front
 
@@ -28,13 +28,13 @@ COPY /api ./api/
 COPY /front ./front
 
 ADD ./front/package.json ./front
+
+# instação das depedencias do FRONT
 RUN npm run build
 
 # https://devcenter.heroku.com/articles/container-registry-and-runtime#getting-started
 # TODO: remover comentario das duas linhas abaixo para produção 
 RUN cd front/ && npm i --save
 RUN cd front/ && npm run build
-# RUN npm test
-
 
 CMD npm start
