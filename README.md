@@ -7,15 +7,11 @@
 
   
 
-O teste foi publicado no link
-
-[https://rovema-magno.herokuapp.com/](https://rovema-magno.herokuapp.com/)
+O teste foi publicado no link [https://rovema-magno.herokuapp.com/](https://rovema-magno.herokuapp.com/)
 
   
 
-Deploy da imagem e testes unitários pode ser conferidos seus logs no link
-
-[https://travis-ci.org/magnocarvalho/Fullstack-test](https://travis-ci.org/magnocarvalho/Fullstack-test)
+Deploy da imagem e testes unitários pode ser conferidos seus logs no link [https://travis-ci.org/magnocarvalho/Fullstack-test](https://travis-ci.org/magnocarvalho/Fullstack-test)
 
   
 
@@ -24,8 +20,6 @@ Tasks foram organizadas no [kanbam](https://github.com/magnocarvalho/Fullstack-t
   
 
 Organização do padrão de escrita do código foi utilizado a biblioteca [Prettier](https://prettier.io/)
-
-  
 
 ## Arquitetura da aplicação MEAN STACK
 
@@ -39,21 +33,22 @@ Software foi desenvolvido utilizando o conceito MEAN STACK, utilizando um conjun
 
   
 
-| Tecnologia | Documentação | Versão
+| Tecnologia | Documentação | Versão |
+| ------ | ------ | ------ |
+| Angular 8 | [https://angular.io/docs](https://angular.io/docs) | 8.3.14 |
+| NodeJS | [https://nodejs.org/pt-br/docs](https://nodejs.org/pt-br/docs/) | 10.16.1 |
+| ExpressJS | [https://expressjs.com/](https://expressjs.com/) | 4.17.1 |
+| MongoDB | [https://docs.mongodb.com/manual/](https://docs.mongodb.com/manual/) | 4.2 |
 
-| ------ | ------ | ------- |
+## MongoDB 
 
-| Angular 8 | [https://angular.io/docs](https://angular.io/docs) | 8.3.14
+Banco de dados foi criado em ambiente [MONGO ATLAS](https://docs.atlas.mongodb.com/getting-started/) 
 
-| NodeJS | [https://nodejs.org/pt-br/docs](https://nodejs.org/pt-br/docs/) | 10.16.1
+![Diagrama do banco mongo](https://raw.githubusercontent.com/magnocarvalho/Fullstack-test/magno-carvalho/docs/diagram-mongoDB.png)
 
-| ExpressJS | [https://expressjs.com/](https://expressjs.com/) | 4.17.1
-
-| MongoDB | [https://docs.mongodb.com/manual/](https://docs.mongodb.com/manual/) | 4.2
 
 ## Segurança
 
-  
 Para a autenticação dos usuários cadastrados foi utilizado implementação do protocolo de segurança OAuth, utilizando o serviço do [Firebase Auth](https://firebase.google.com/docs/auth/?authuser=0), todo processo ocorre como na ilustração abaixo.
 
 ![Firebase](https://jainamit333.files.wordpress.com/2017/08/oauth_implicit.png)
