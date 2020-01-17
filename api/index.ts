@@ -4,8 +4,8 @@ import mongoose = require("mongoose");
 import bodyParser = require("body-parser");
 import moment = require("moment");
 import admin = require("firebase-admin");
-const dynamicStatic = require('express-dynamic-static')();
-const path = require('path');
+const dynamicStatic = require("express-dynamic-static")();
+const path = require("path");
 
 var cors = require("cors");
 var app = express();
@@ -46,20 +46,21 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use(express.static(__dirname + "front"));
+app.use("/", function(req, res, next) {
+  next();
+});
+app.use("/", express.static(__dirname + "/front"));
 
 app.options("*", function(req, res, next) {
   if (req.method == "OPTIONS") res.sendStatus(200);
 });
 
-
 app.use("/api", rota); //rotas api
-
 
 app.use(function(req, res, next) {
   let err: any;
   err = new Error("Not found");
-  err.DOMINIO = "https://rovema-magno.herokuapp.com/"
+  err.DOMINIO = "https://rovema-magno.herokuapp.com/";
   err.status = 404;
   next(err);
 });

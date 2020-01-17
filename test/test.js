@@ -3,7 +3,7 @@ let chaiHttp = require("chai-http");
 const admin = require("firebase-admin");
 const rp = require("request-promise");
 const serviceAccount = require("../firebase.json");
-let HOST ="http://localhost";
+let HOST = "http://localhost";
 let should = chai.should();
 let expect = chai.expect;
 chai.use(chaiHttp);
@@ -230,8 +230,31 @@ describe("CRUD TEST", () => {
       chai
         .request(HOST)
         .put("/api/book?id=" + id)
-        .set("Authorization", "Bearer " + token)
         .send(livro)
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          done();
+        });
+    });
+  });
+
+  describe("/GET HTML Angular", async () => {
+    it("1 - GET index.html", done => {
+      chai
+        .request("http://0.0.0.0")
+        .get("/index.html")
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          done();
+        });
+    });
+  });
+
+  describe("/GET HTML Angular", async () => {
+    it("1 - GET /", done => {
+      chai
+        .request("http://0.0.0.0")
+        .get("/")
         .end((err, res) => {
           expect(res).to.have.status(200);
           done();
