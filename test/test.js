@@ -231,6 +231,7 @@ describe("CRUD TEST", () => {
         .request(HOST)
         .put("/api/book?id=" + id)
         .send(livro)
+        .set("Authorization", "Bearer " + token)
         .end((err, res) => {
           expect(res).to.have.status(200);
           done();
@@ -248,10 +249,8 @@ describe("CRUD TEST", () => {
           done();
         });
     });
-  });
-
-  describe("/GET HTML Angular", async () => {
-    it("1 - GET /", done => {
+ 
+    it("2 - GET /", done => {
       chai
         .request("http://0.0.0.0")
         .get("/")
