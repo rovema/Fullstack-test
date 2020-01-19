@@ -1,4 +1,5 @@
 import rota = require("./routes/rotas");
+import estatica = require("./routes/static");
 import express = require("express");
 import mongoose = require("mongoose");
 import bodyParser = require("body-parser");
@@ -6,7 +7,6 @@ import moment = require("moment");
 import admin = require("firebase-admin");
 const dynamicStatic = require("express-dynamic-static")();
 const path = require("path");
-
 var cors = require("cors");
 var app = express();
 require("dotenv").config();
@@ -50,13 +50,9 @@ app.options("*", function(req, res, next) {
   if (req.method == "OPTIONS") res.sendStatus(200);
 });
 
-app.use("/", express.static(__dirname + "/front"));
-
-app.get("/", function(req, res, next) {
-  next();
-});
-
 app.use("/api", rota); //rotas api
+app.use("/", estatica); //rotas front
+app.use("/", express.static(__dirname + "/front"));
 
 app.use(function(req, res, next) {
   let err: any;

@@ -239,7 +239,8 @@ describe("CRUD TEST", () => {
     });
   });
 
-  describe("/GET HTML Angular", async () => {
+  describe("/GET HTML Files", async () => {
+
     it("1 - GET index.html", done => {
       chai
         .request("http://0.0.0.0")
@@ -249,15 +250,56 @@ describe("CRUD TEST", () => {
           done();
         });
     });
- 
-    it("2 - GET /", done => {
+
+    it("2 - GET login/", done => {
       chai
         .request("http://0.0.0.0")
-        .get("/")
+        .get("/login")
         .end((err, res) => {
           expect(res).to.have.status(200);
           done();
         });
     });
+
+    it("3 - GET auth/", done => {
+      chai
+        .request("http://0.0.0.0")
+        .get("/auth")
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          done();
+        });
+    });
+
+    it("4 - GET books/", done => {
+      chai
+        .request("http://0.0.0.0")
+        .get("/books")
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          done();
+        });
+    });
+
+    it("5 - GET new-book/", done => {
+      chai
+        .request("http://0.0.0.0")
+        .get("/new-book")
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          done();
+        });
+    });
+
+    it("5 - GET edit-book/", done => {
+      chai
+        .request("http://0.0.0.0")
+        .get("/edit-book")
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          done();
+        });
+    });
+
   });
 });
