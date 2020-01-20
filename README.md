@@ -1,66 +1,174 @@
-# Full Stack no Grupo Rovema
-Somos uma empresa que atua em vários segmentos de mercado, com diferentes tecnologias, culturas e desafios. Por isso, gostamos de compor nossos times com profissionais multidisciplinares, que tenham alta capacidade de aprendizado, sejam detalhistas, resiliêntes, questionadores e curiosos. Você, como **Full Stack Developer**, será o responsável por implementar, dar manutenção, aplicar correções e propor soluções em projetos de software, baseadas em **Containers Docker** sempre buscando a melhor composição de tecnologias para cada cenário.
 
-## Orientações
-Para executar o desafio de **Full Stack Developer**, você **poderá utilizar qualquer liguagem de programação, framework ou biblioteca e banco de dados** que for **confortável para você**, seguindo o [passo-a-passo](https://github.com/rovema/fullstack-test#etapas) para a execução, atendendo aos [critérios de aceitação](https://github.com/rovema/fullstack-test#crit%C3%A9rios-de-aceita%C3%A7%C3%A3o). 
+# Teste Grupo Rovema - Magno Carvalho
 
-## Desafio
-Você é o responsável por construir uma **Estante de livros**, com os seguintes requisitos:
+  
 
-- Como leitor, desejo cadastrar um livro, contendo **título**, **descrição**, **foto** e **status** de **Lido** ou **Não Lido**.
-- Como leitor, desejo cadastrar livros com o status de **Não Lido** por padrão.
-- Como leitor, desejo editar um livro cadastrado.
-- Como leitor, desejo remover um livro da minha estante.
-- Como leitor, desejo visualizar uma lista de livros cadastrados.
-- Como leitor, desejo filtrar os livros cadastrados por **título** e **status**.
-- Como leitor, desejo exportar a lista de livros cadastrados para formato **.csv**, contendo **título** e **status**.
-- Como leitor, desejo acessar minha estante através de login e senha.
+[![Build Status](https://travis-ci.org/magnocarvalho/Fullstack-test.svg?branch=magno-carvalho)](https://travis-ci.org/magnocarvalho/Fullstack-test) [Currículo atualizado](https://github.com/magnocarvalho/tcc/raw/master/docs/Curriculum-MagnoCarvalhoDosSantos%20(2).pdf)
 
-## Etapas
+  
 
-#### 1 - Fazer um fork desse repositório
-![https://i.imgur.com/7sVXPcu.png](https://i.imgur.com/7sVXPcu.png)
+O teste foi publicado no link [https://rovema-magno.herokuapp.com/](https://rovema-magno.herokuapp.com/)
+
+  
+
+Deploy da imagem e testes unitários pode ser conferidos seus logs no link [https://travis-ci.org/magnocarvalho/Fullstack-test](https://travis-ci.org/magnocarvalho/Fullstack-test)
+
+  
+
+Tasks foram organizadas no [kanbam](https://github.com/magnocarvalho/Fullstack-test/projects/1), dentro do proprio projeto no github.
+
+  
+
+Organização do padrão de escrita do código foi utilizado a biblioteca [Prettier](https://prettier.io/)
+
+## Arquitetura da aplicação MEAN STACK
+
+  
+
+Software foi desenvolvido utilizando o conceito MEAN STACK, utilizando um conjunto de tecnologias OPEN SOURCE, que interagem em PILHA conforme a ilustração abaixo.
+
+![MEAN](https://raw.githubusercontent.com/magnocarvalho/tcc/master/docs/images/image9.png)
+
+[Sobre o conceito MEAN STACK](https://www.mongodb.com/blog/post/the-modern-application-stack-part-1-introducing-the-mean-stack)
+
+  
+
+| Tecnologia | Documentação | Versão |
+| ------ | ------ | ------ |
+| Angular 8 | [https://angular.io/docs](https://angular.io/docs) | 8.3.14 |
+| NodeJS | [https://nodejs.org/pt-br/docs](https://nodejs.org/pt-br/docs/) | 10.16.1 |
+| ExpressJS | [https://expressjs.com/](https://expressjs.com/) | 4.17.1 |
+| MongoDB | [https://docs.mongodb.com/manual/](https://docs.mongodb.com/manual/) | 4.2 |
+
+## MongoDB 
+
+Banco de dados foi criado em ambiente [MONGO ATLAS](https://docs.atlas.mongodb.com/getting-started/) 
+
+![Diagrama do banco mongo](https://raw.githubusercontent.com/magnocarvalho/Fullstack-test/magno-carvalho/docs/diagram-mongoDB.PNG)
 
 
-#### 2 - Criar um branch com o seu primeiro e último nome
+## Segurança
+
+Para a autenticação dos usuários cadastrados foi utilizado implementação do protocolo de segurança OAuth, utilizando o serviço do [Firebase Auth](https://firebase.google.com/docs/auth/?authuser=0), todo processo ocorre como na ilustração abaixo.
+
+![Firebase](https://jainamit333.files.wordpress.com/2017/08/oauth_implicit.png)
+
+[Fonte](https://jainamit333.wordpress.com/2017/08/05/add-google-authentication-using-firebase-in-reactredux-application/)
+
+## Docker
+
+  
+
+Criar a imagem Docker execute o comando a seguir
+
+  
+
 ```bash
-git checkout -b joao-silva
+
+$ docker build -t magnos .
+
 ```
 
-#### 3 - Escreva a documentação da sua aplicação
-Crie uma pasta na raíz da aplicação chamada **docs/** contendo o a **modelagem entidade-relacionamento** (em imagem ou pdf) da sua aplicação. Você deve também, substituir o conteúdo do arquivo **README.md** e escrever a documentação da sua aplicação, com os seguintes tópicos: 
-- **Projeto**: Descreva o projeto e como você o executou. Seja objetivo.
-- **Tecnologias**: Descreva quais tecnologias foram utilizadas, enumerando versões (se necessário) e os links para suas documentações, bem como, qual guia de estilos de código você utilizou com o link para a sua documentação.
-- **Como rodar**: Descreva como iniciar a sua aplicação, utilizando **Docker** e **Docker Compose**.
+Para executar a aplicação utilizando Docker exulte o comando abaixo
 
-#### 4 - Faça uma Pull Request
-Após implementada a solução, crie uma [pull request](https://github.com/rovema/fullstack-test/pulls) com o seu projeto para esse repositório.
+  
 
-## Critérios de Aceitação
-Para que seu teste tenha o mínimo necessário que atenda aos requisitos esperados, ele deve:
-- Atender ao que foi proposto no [Desafio](https://github.com/rovema/fullstack-test#Desafio).
-- Ter documentação de aplicação e modelos de banco de dados.
-- Manter uma estrutura de aplicação concisa e coerente. (Simples é melhor que complexo)
-- Sua aplicação e banco de dados devem conter uma implementação como container Docker.
-- Código escrito com base em algum padrão de convenções (style guide) da linguagem que está utilizando. Ex: Em Python, temos o [pep8](https://www.python.org/dev/peps/pep-0008/), em PHP temos a [PSR2](https://www.php-fig.org/psr/psr-2/), em JavaScript temos [AirBnB Standards](https://github.com/airbnb/javascript) e o [Javascript Standards](https://standardjs.com/), etc.
-- Utilizar padrões semânticos em mensagens de commit. (Gostamos do padrão de commits do repositório [AngularJS](http://karma-runner.github.io/3.0/dev/git-commit-msg.html))
+```bash
 
+$ docker run -p 80:1337 -d magnos
 
-## Dicas e Informações Valiosas
+```
 
-#### O que gostaríamos de ver em seu teste:
-- Testar ele localmente com docker e validar o **CRUD** de livros.
-- Se possível, que seu teste estivesse hospedado em algum lugar. (Gostamos do [Heroku](https://www.heroku.com/)).
-- Convenção de nome em classes, objetos, variáveis, métodos e etc.
-- Um planejamento de entrega das tarefas do seu desafio. (Gostamos de [Kanban](https://blog.runrun.it/o-que-e-kanban/)).
-- Que sua estrutura de linguagem e tecnologias seja compatível com ambiente Linux.
-- Testes unitários.
+Executar o conjunto de teste
 
-**Observação:** Nenhum dos itens acima é obrigatório.
+  
 
-#### O que não gostaríamos de ver no seu teste:
-- Saber que não foi você quem implementou.
-- Processos manuais de inicialização da aplicação e banco de dados.
-- Falta de organização de código.
-- Falta de documentação.
-- Histórico de commits desorganizado e despadronizado.
+```bash
+
+$ mocha ./test/test.js --timeout 10000
+
+```
+
+  
+
+## Pipeline de CI
+
+  
+
+#### Fluxo de publicação automatizado
+
+  
+
+[GitHub](https://github.com/): Repositório do código acionado após acontecer o push de novos arquivo, notificando o serviço do Travis CI.
+
+[Travis CI](https://travis-ci.com/): Travis executar os testes e criar o código para produção.
+
+[Heroku](https://www.heroku.com/): Executa o código automaticamente após os testes/compilação forem aprovados com sucesso no travis-cli.
+
+  
+
+![Fluxo de publicação automatizado](https://miro.medium.com/max/739/1*ttsZACmqa4SJRENqllm0og.png)
+
+  
+
+## Ambiente DEV sem Dockek
+
+Instalação do ambiente de desenvolvimento sem utilizar Docker siga os passos abaixo.
+
+#### Instalar dependências globais
+
+```bash
+
+$ npm i -g typescript@3.5.2 tslint mocha chai-http chai gulp-cli @angular/cli@8.3.21 @angular/animations@^8.2.14
+
+```
+
+  
+
+#### Instalação das dependências da API
+
+  
+
+```bash
+
+$ npm i --save -d
+
+```
+
+  
+
+#### Instalação das dependências do FRONT
+
+  
+
+```bash
+
+$ cd front/
+
+$ npm i --save -d
+
+```
+
+  
+
+#### Execultando API
+
+  
+
+Execute o comando `npm run dev` na raiz do projeto para inciar o servidor em modo DEV. Navegue para `http://localhost:1337/`.
+
+  
+
+#### Executando FRONT
+
+  
+
+Execute o comando `ng serve` na pasta `front` para inciar o servidor em modo dev. Navegue para `http://localhost:4200/`. O aplicativo será recarregado automaticamente se você alterar qualquer um dos arquivos de origem.
+
+  
+
+#### Banco de dados
+
+  
+
+Url de acesso ao banco de dados deve ser informado no environment do ambiente a exemplo do das linhas que contem o `ENV` no arquivo `Dockerfile` com a chave `MONGODB_URI`

@@ -1,0 +1,66 @@
+<div class="padding-min-100">
+  <mat-card style="max-width: 400px; margin: 0 auto;">
+    <div id="img-header-center">
+      <img
+        src="/assets/book_icon.png"
+        style="margin: 0 auto; text-align: center; align-self: center;"
+      />
+    </div>
+    <mat-card-content>
+      <mat-card-title>Fazer login</mat-card-title>
+      <form [formGroup]="formAuth">
+        <div fxLayout="column" fxLayoutAlign="center stretch">
+          <mat-form-field appearance="outline" fxFlex="100">
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              placeholder="Email"
+              type="email"
+              required
+              formControlName="email"
+              autocomplete="email"
+            />
+            <mat-icon matSuffix>mail</mat-icon>
+            <!-- <mat-hint>Hint</mat-hint> -->
+          </mat-form-field>
+          <mat-form-field appearance="outline" fxFlex="100">
+            <mat-label>Senha</mat-label>
+            <input
+              matInput
+              placeholder="Senha"
+              type="password"
+              required
+              formControlName="pass"
+              autocomplete="current-password"
+            />
+            <mat-icon matSuffix>vpn_key</mat-icon>
+            <!-- <mat-hint>Hint</mat-hint> -->
+          </mat-form-field>
+          <div fxLayout="column" fxLayoutAlign="center stretch">
+            <button mat-raised-button color="primary" (click)="login()">
+              Entrar
+            </button>
+          </div>
+        </div>
+      </form>
+      <!-- <div
+        fxLayout="column"
+        fxLayoutAlign="center center"
+        style="padding: 10px;"
+      >
+        <p>OU</p>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="space-around center">
+        <span>
+          <div id="gSignInWrapper">
+            <div id="customBtn" class="customGPlusSignIn">
+              <span class="icon"></span>
+              <span class="buttonText">Google</span>
+            </div>
+          </div>
+        </span>
+      </div> -->
+    </mat-card-content>
+    <mat-card-actions> </mat-card-actions>
+  </mat-card>
+</div>

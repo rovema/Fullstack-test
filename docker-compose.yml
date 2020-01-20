@@ -1,0 +1,21 @@
+version: '2'
+# https://github.com/DanWahlin/NodeExpressMongoDBDockerApp/blob/master/docker-compose.yml
+
+services:
+
+  node:
+    build:
+      context: .
+    networks:
+      - nodeapp-network
+    depends_on: 
+      - mongodb
+      
+  mongodb:
+    image: mongo
+    networks:
+      - nodeapp-network
+
+networks:
+  nodeapp-network:
+    driver: bridge

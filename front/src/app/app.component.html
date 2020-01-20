@@ -1,0 +1,42 @@
+<ngx-loading-bar color="#7a00d6"></ngx-loading-bar>
+<mat-toolbar color="primary">
+  <span>Estante de livros</span>
+  <span class="example-spacer"></span>
+  <button *ngIf="!api.uid" mat-raised-button [routerLink]="['/auth']">
+    Cadastre-se
+  </button>
+  <button
+    *ngIf="api.uid"
+    mat-icon-button
+    [matMenuTriggerFor]="menu"
+    matTooltip="Menu"
+    aria-label="Example icon-button with a menu"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item [routerLink]="['/new-book']">
+      <mat-icon>post_add</mat-icon>
+      Novo livro
+    </button>
+    <button mat-menu-item  [routerLink]="['/books']">
+      <mat-icon>book</mat-icon>
+      Listar livros
+    </button>
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>exit_to_app</mat-icon>
+      Sair
+    </button>
+  </mat-menu>
+</mat-toolbar>
+<div
+  color="primary"
+  id="main-container"
+  class="primary-lighter-color"
+  fxLayout="column"
+  fxLayoutAlign="center stretch"
+>
+  <div fxFlex="100">
+    <router-outlet></router-outlet>
+  </div>
+</div>

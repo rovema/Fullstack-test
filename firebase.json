@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "magno-test-rovema",
+  "private_key_id": "962b67af08621e9a378485a52e6e3c9677057925",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDS2c/X76sIUMSh\n/CpQ5IGDWDenSQbZEuQ4OrbgdwLPgYLgifzydDo79Et6qHPNxlFu9Ii6Zcv3QlNv\nLgBmR8qhSpiZJt8FoQXP6X6Glvc3Ar1/b5e/UEL3r7Yu5yqq4RY8OxugFBKHzA81\nmhfOzSuNGkVF+2T7Y2VguqQfCfsnTd/sqpnjmXv47Ms9daGe6wHvnkJ/JwRw6mWI\nUsmd72KaXA6SM+G9qFTmWuGsVFuWRUmRL2URluC+zQGsATR0rSvAVbdNZednZkZt\n2I+wk5t7EeM6ttKw6yBFK2L7VHSHykOZABJdoHpt366GumydgGJ9n/u9LFmC0UsA\n14JexAtzAgMBAAECggEASOj0jBDeLYPwWqsd3tcFSevJYtlHuuxjamYzMq80k5iP\nLyHIC/bQ5EZ3izSQxskbA6kfVoU44IlY3IslrDiLAvcOiXb9i67AmcJ99ABj/+u8\np0JpUMhqP8fM0a8x++DVlYJC7TnDpp2TbM+aB/K+ao55AdgKdTtLpQUlF26WIGKW\nqkSKyW5s+YhW1BogDfo8VtPEofH0jhf5nrVLAaseLz1uTNvxjH7PGWH5GjHJcvKV\nXf2KLSjNJOSE/Uas4ZVBHdeQa78/jt0YVB4hoxx1ILChqqGnUNrqs+Yx2i8g+duo\nIOOi9kDinBqnLs8GLOtUptNJOFIaCN/jyxFr/04AUQKBgQDqvRsKZ4vjwqO+tMDO\nS8HNfQWGd1cNhnER6KlGgikgqu/ZHDm4KCaT2HWXP2ZxC6zDd0Xq23eVYERp5gT4\nE41OtdHBTdsC6ewnvmey6uNguDRCNLwLjhjxUe5LGuRvc+pk+tz76qYvg+xF0BGW\nbDXRFg+LR6WPVYgt/pF9ABw5xwKBgQDl8tFFcq+ahFn9UvJ1BV7QcIRRDnKyB5cV\nsFkVricAgJBRRPhw1kbQWPWwC+IDhVTPNI+2xml2o1r04Yeh11Q0CK2Bm4FGnBsJ\nGGzA1VgdVREoytbPgyHCssso/3JPqw8WwT/CfsXeDNeyFCWEBdnKBUNlpDvSkgcz\ny1Yj6DlA9QKBgQCkLJaY9Eq2hQ8Y9jpTDlEBcwtGPHk6EGlMaTjbA3XYTzVo14DW\n993jUWUM3166ebvfCbBwzgYZBzdSCXo4NxSBlFCbreQbaZetRFIqpHVa0/pYw6Ex\nQ7TWMsNC7BAQkzXAYmPkHP0WBmJdgWSLnCsXjSJZ+0YjtWKFKKKAlm8nSQKBgQCR\nfpkxQwafUx0Jb4Ffz70VUAw4qVajFLBhFcrYL/AXnkEyWtyDsODvlUonUO154tQt\nowlH0bULTwMPLOA/49owbkkyV61tevqUP7MYNCVjsd6AnA9dD5C9+5kWYML4a7jJ\nYg8wxjv2atPTpnGyXm1WKQxi9I6xhpouCHuBjr8jPQKBgQC8UqjYgr5SLnRM2gil\nBR9oXMvsx3UFbk2k5rfNFrUBhgz21JtiLso3WO42EW3f2DmG8LIjf1qqgbHMahha\nYWO0Dso+xpKiMT4ttyq+ABQQ1ZJ0H3Sbf0luYpD/BchEPtieDlvCVOVqoPiQIOzB\nMZSvgwDZDv90cmBgMuetvfIdqg==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-jdufh@magno-test-rovema.iam.gserviceaccount.com",
+  "client_id": "114685748518767829476",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-jdufh%40magno-test-rovema.iam.gserviceaccount.com"
+}

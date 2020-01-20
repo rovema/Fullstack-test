@@ -1,0 +1,196 @@
+<div class="padding-min-100">
+  <mat-card style="max-width: 400px; margin: 0 auto;">
+    <mat-card-content *ngIf="livro">
+      <div fxLayout="row">
+        <mat-icon>book</mat-icon>
+        <mat-card-title>&nbsp;Editar Livro</mat-card-title>
+      </div>
+      <form [formGroup]="formBook">
+        <div fxLayout="column" fxLayoutAlign="center stretch">
+          <mat-form-field appearance="outline" fxFlex="100">
+            <mat-label>Titulo</mat-label>
+            <input
+              matInput
+              placeholder="Nome do Livro"
+              type="text"
+              required
+              formControlName="title"
+              autocomplete="off"
+            />
+            <mat-icon matSuffix>menu_book</mat-icon>
+            <mat-error *ngIf="formBook.get('title').hasError('required')">
+              Titulo é
+              <strong>obrigatoria</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" fxFlex="100">
+            <mat-label>Descrição</mat-label>
+            <textarea
+              matInput
+              #message
+              placeholder="Descrição do Livro"
+              type="text"
+              required
+              formControlName="description"
+              autocomplete="off"
+            ></textarea>
+            <mat-hint align="end">{{ message.value.length }} / 300</mat-hint>
+            <mat-error *ngIf="formBook.get('description').hasError('required')">
+              Descrição é
+              <strong>obrigatoria</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-card-subtitle>Imagem do Livro *</mat-card-subtitle>
+
+          <div fxLayout="column">
+            <div *ngIf="tmpPicture" fxLayout="row">
+              <img [src]="tmpPicture" matCardImageLarge />
+              <div
+                fxFlex="auto"
+                fxLayout="column"
+                fxLayoutAlign="center center"
+              >
+                <button mat-raised-button color="accent" (click)="deleteImgTmp()">Apagar imagem</button>
+              </div>
+            </div>
+            <input
+              type="file"
+              (change)="fileChangeEvent($event)"
+              accept=".jpg,.jpeg,.png"
+              style="padding-bottom: 10px;"
+              #fotos
+            />
+            <mat-error
+              *ngIf="
+                !fotoThumbAplicado &&
+                !imageChangedEvent &&
+                formBook.get('picture').hasError('required')
+              "
+            >
+              Foto do livro é um item
+              <strong>obrigatorio</strong>
+            </mat-error>
+            <image-cropper
+              #cropthumb
+              [imageChangedEvent]="imageChangedEvent"
+              [maintainAspectRatio]="true"
+              [aspectRatio]="1 / 1"
+              [resizeToWidth]="350"
+              format="png"
+              (imageCropped)="imageCropped($event)"
+              (imageLoaded)="imageLoaded()"
+              (cropperReady)="cropperReady()"
+              (loadImageFailed)="loadImageFailed()"
+              *ngIf="!fotoThumbAplicado"
+            >
+            </image-cropper>
+            <div
+              class="buttons-crop"
+              *ngIf="imageChangedEvent && !fotoThumbAplicado"
+              style="padding-top: 15px;"
+            >
+              <div
+                fxLayout="row"
+                fxLayoutAlign="space-around center"
+                fxLayoutGap="gappx"
+              >
+                <button
+                  title="Rotacionar para esquerda"
+                  button
+                  mat-raised-button
+                  color="accent"
+                  (click)="rotateLeft($event)"
+                >
+                  <i class="material-icons">rotate_left</i>
+                </button>
+                <button
+                  title="Rotacionar para direita"
+                  button
+                  mat-raised-button
+                  color="accent"
+                  (click)="rotateRight($event)"
+                >
+                  <i class="material-icons">rotate_right</i>
+                </button>
+                <button
+                  title="Espelhar horizontalmente"
+                  button
+                  mat-raised-button
+                  color="accent"
+                  (click)="flipHorizontal($event)"
+                >
+                  <i class="material-icons">flip</i>
+                </button>
+                <button
+                  title="Espelhar verticalmente"
+                  button
+                  mat-raised-button
+                  color="accent"
+                  (click)="flipVertical($event)"
+                >
+                  <i class="material-icons flip-vertical">flip</i>
+                </button>
+              </div>
+            </div>
+            <div fxLayout="row" style="padding-top: 15px;" *ngIf="croppedImage">
+              <div>
+                <img [src]="croppedImage" matCardImageLarge />
+              </div>
+              <div
+                fxFlex="auto"
+                fxLayout="column"
+                fxLayoutAlign="center center"
+              >
+                <button
+                  mat-raised-button
+                  color="primary"
+                  *ngIf="!fotoThumbAplicado"
+                  (click)="aplicarFotoThumb()"
+                >
+                  Usar imagem ao lado
+                </button>
+                <button
+                  mat-raised-button
+                  color="warn"
+                  *ngIf="fotoThumbAplicado"
+                  (click)="aplicarFotoThumb()"
+                >
+                  Editar recorte da imagem
+                </button>
+              </div>
+            </div>
+          </div>
+          <div fxLayout="column">
+            <mat-card-subtitle>
+              Status de leitura do livro *
+            </mat-card-subtitle>
+            <mat-slide-toggle
+              class="example-margin"
+              color="primary"
+              formControlName="status"
+              #slideB
+            >
+              <span *ngIf="!slideB.checked">Não Lido</span>
+              <span *ngIf="slideB.checked">Lido</span>
+            </mat-slide-toggle>
+            <mat-error *ngIf="formBook.get('status').hasError('required')">
+              Status é
+              <strong>obrigatorio</strong>
+            </mat-error>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+    <mat-card-actions
+      aling="right"
+      style="text-align: right; align-items: right;"
+    >
+      <button mat-raised-button color="accent" [routerLink]="['/books']">
+        Cancelar
+      </button>
+      <button mat-raised-button color="primary" (click)="saveBook()">
+        Atualizar Livro
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

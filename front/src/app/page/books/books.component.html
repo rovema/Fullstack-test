@@ -1,0 +1,102 @@
+<mat-toolbar>
+  <div fxLayout="row">
+    <form [formGroup]="formBooks" id="formBooks">
+      <div fxLayout="row">
+        <input
+          class="enjoy-css"
+          placeholder="Buscar pelo nome do Livro"
+          type="text"
+          formControlName="title"
+          autocomplete="off"
+        />
+        <div>
+          <span>&nbsp;&nbsp;</span>
+          <mat-checkbox
+            color="primary"
+            class="example-margin"
+            formControlName="notRead"
+            #notRead
+            (change)="onlySelectNotRead()"
+            >Não Lido</mat-checkbox
+          >
+          <span>&nbsp;</span>
+          <mat-checkbox
+            color="primary"
+            class="example-margin"
+            formControlName="read"
+            #read
+            (change)="onlySelectRead()"
+            >Lido</mat-checkbox
+          >
+          <span>&nbsp;&nbsp;</span>
+        </div>
+        <button
+          mat-raised-button
+          color="accent"
+          (click)="getBooksWithParam()"
+          matTooltip="Pesquisar pelo titulo do livro"
+        >
+          <mat-icon>search</mat-icon> Pesquisar
+        </button>
+      </div>
+    </form>
+  </div>
+  <span class="example-spacer"></span>
+  <button
+    (click)="resetForm()"
+    mat-mini-fab
+    matTooltip="Recaregar lista e resetar filtros"
+  >
+    <mat-icon>settings_backup_restore</mat-icon>
+  </button>
+</mat-toolbar>
+<mat-toolbar-row color="primary">
+  <span>Total de {{ books.length }} livro(s)</span>
+  <span>&nbsp;</span>
+  <mat-icon>library_books</mat-icon>
+
+  <span class="example-spacer"></span>
+  <button
+    mat-raised-button
+    matTooltip="Exportar lista de livros no formato .csv"
+    (click)="exportBooks()"
+  >
+    Exportar .csv
+  </button>
+</mat-toolbar-row>
+<mat-divider color="accent"></mat-divider>
+<div fxLayout="row wrap" fxLayoutAlign="start start">
+  <div class="example-card" *ngFor="let b of books">
+    <mat-card>
+      <mat-card-header>
+        <span matCardAvatar *ngIf="b.status" color="accent">
+          <mat-icon style="color: #15fd00;">thumb_up</mat-icon>
+        </span>
+        <span
+          matCardAvatar
+          style="color: #536951;"
+          *ngIf="!b.status"
+          color="warn"
+        >
+          <mat-icon>thumb_down</mat-icon>
+        </span>
+        <mat-card-title>{{ b.title }}</mat-card-title>
+        <mat-card-subtitle *ngIf="b.status">Lido</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="!b.status">Não Lido</mat-card-subtitle>
+      </mat-card-header>
+
+      <img mat-card-image [src]="b.picture" [alt]="b.title" />
+      <mat-card-content>
+        <mat-card-subtitle>{{ b.description }}</mat-card-subtitle>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="editBook(b)">
+          EDITAR
+        </button>
+        <button mat-raised-button color="accent" (click)="deleteBook(b._id)">
+          DELETAR
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
